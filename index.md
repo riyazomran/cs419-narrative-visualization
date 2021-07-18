@@ -1,10 +1,8 @@
 <html>
 <body>
 
-<h2>HTML Buttons</h2>
-<p>HTML buttons are defined with the button tag: ABVC</p>
-
-<button>Click me</button>
+  <h2>Understanding the Cost of Liberty</h2>
+  <img src="/images.png"></img>
 
 </body>
 </html>
