@@ -1,15 +1,3 @@
-
-
-<table border="0">
- <tr>  <td colspan="2" align="center"><img src="images.png"></td></tr>
- <tr>
-  <td style="line-height: 150%;"><font size="8">W</font>e the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. We find ourselves in a political quagmire that has paralyzed our nations legislative bodies. The truth however is in the data and the countless number of victims.  </td>
- </tr>
- <tr>
-   <td colspan="2"><svg width="600" height="600"></svg></td>
-  <tr>
-<table>
- 
 <style>
 .cells {
   fill: #aaa;
@@ -19,8 +7,62 @@
   text-anchor: start;
   font: 24px sans-serif;
 }
+ 
+ .slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
 
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #04AA6D; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #04AA6D; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
 </style>
+
+<table border="0">
+ <tr><td colspan="2" align="center"><img src="images.png"></td></tr>
+ <tr>
+  <td style="line-height: 150%;"><font size="8">W</font>e the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. We find ourselves in a political quagmire that has paralyzed our nations legislative bodies. The truth however is in the data and the countless number of victims.  </td>
+ </tr>
+<table>
+ 
+<div class="slidecontainer" id="question1">
+  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+</div> 
+ <div>
+  <svg width="600" height="600"></svg>
+ </div>
+ 
+
 <svg width="960" height="990"></svg>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
