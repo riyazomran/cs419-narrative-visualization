@@ -55,8 +55,9 @@
  </tr>
 <table>
  
+<div id="q1_slider_answer"><p align="center"><span id="your-answer1"></span></p></div>
 <div class="slidecontainer" id="question1">
-  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+  <input type="range" min="1" max="100" value="50" class="slider" id="range1" onchange="updateAnswer("1");">
 </div> 
  <div>
   <svg width="600" height="600"></svg>
@@ -66,6 +67,13 @@
 <svg width="960" height="990"></svg>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
+  
+function updateAnswer(questionNumber){
+  var slider = document.getElementById("range" + questionNumber);
+  var output = document.getElementById("your-answer" + questionNumber);
+  output.innerHTML = slider.value;
+}
+  
 
 var formatNumber = d3.format(",d");
 
