@@ -62,7 +62,8 @@ function updateAnswer(questionNumber){
   <td style="line-height: 150%;"><font size="8">W</font>e the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. We find ourselves in a political quagmire that has paralyzed our nations legislative bodies. The truth however is in the data and the countless number of victims.  </td>
  </tr>
 <table>
- 
+  
+ <div style="color:black;font-size:46px;" >Guess the number of people shot and killed per day in the United States?</div> 
 <div id="q1_slider_answer"><p align="center"><span id="your-answer1" style="color:green;font-size:46px;">0</span></p></div>
 <div class="slidecontainer" id="question1" onclick="updateAnswer(1);">
   <input type="range" min="1" max="1000" value="50" class="slider" id="range1">
