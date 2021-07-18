@@ -56,9 +56,10 @@ function updateAnswer(questionNumber){
 }
 </script>
 
-<div><img src="images.png"></div>
-<div><font size="8">W</font>e the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. We find ourselves in a political quagmire that has paralyzed our nations legislative bodies. The truth however is in the data and the countless number of victims.
+<div align="center"><img src="images.png"></div>
+<div style="line-weight:10px"><font size="8">W</font>e the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. We find ourselves in a political quagmire that has paralyzed our nations legislative bodies. The truth however is in the data and the countless number of victims.
 </div>
+<div><hr></div>
   
 <div style="color:green;font-size:36px;">Guess the number of people shot and killed per day in the United States?</div> 
 <div id="q1_slider_answer"><p align="center"><span id="your-answer1" style="color:green;font-size:46px;">0</span></p></div>
