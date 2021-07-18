@@ -57,7 +57,7 @@ function updateAnswer(questionNumber){
 </script>
 
 <div align="center"><img src="images.png"></div>
-<div style="line-weight:10px"><font size="12">We the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. We find ourselves in a political quagmire that has paralyzed our nations legislative bodies. The truth however is in the data and the countless number of victims.</font>
+<div style="line-weight:10px"><font size="8">We the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. We find ourselves in a political quagmire that has paralyzed our nations legislative bodies. The truth however is in the data and the countless number of victims.</font>
 </div>
 <div><hr></div>
   
