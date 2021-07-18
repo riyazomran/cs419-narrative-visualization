@@ -1,11 +1,13 @@
 
 
- <img src="images.png">
-  
- <div class="left" background-color: rgb(36, 0, 95) left="0" >
-    <h1>Some random text on the left</h1>
-</div>
-<div class="right" background-color: rgb(56, 1, 44); right="0">
-    <h1>Some random text on the right</h1>
-</div>
+<table border="0">
+ <tr>
+  <td><img src="images.png"></td>
+  <td></td>
+ </tr>
+ <tr>
+   <td colspan="2"><svg width="300" height="300"></svg></td>
+  <tr>
+<table>
+ 
 
