@@ -47,6 +47,14 @@
   cursor: pointer; /* Cursor on hover */
 }
 </style>
+<script>
+    
+function updateAnswer(questionNumber){
+  var slider = document.getElementById("range" + questionNumber);
+  var output = document.getElementById("your-answer" + questionNumber);
+  output.innerHTML = slider.value;
+}
+</script>
 
 <table border="0">
  <tr><td colspan="2" align="center"><img src="images.png"></td></tr>
@@ -67,14 +75,6 @@
 <svg width="960" height="990"></svg>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
-  
-function updateAnswer(questionNumber){
-  var slider = document.getElementById("range" + questionNumber);
-  var output = document.getElementById("your-answer" + questionNumber);
-  output.innerHTML = slider.value;
-}
-  
-
 var formatNumber = d3.format(",d");
 
 var svg = d3.select("svg");
