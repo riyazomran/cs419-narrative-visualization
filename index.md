@@ -63,7 +63,7 @@ function updateAnswer(questionNumber){
  </tr>
 <table>
  
-<div id="q1_slider_answer"><p align="center"><span id="your-answer1"></span></p></div>
+<div id="q1_slider_answer"><p align="center"><span id="your-answer1" style="color:green;font-size:46px;">0</span></p></div>
 <div class="slidecontainer" id="question1" onclick="updateAnswer(1);">
   <input type="range" min="1" max="1000" value="50" class="slider" id="range1">
 </div> 
