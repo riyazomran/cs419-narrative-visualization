@@ -162,7 +162,7 @@ function updateAnswer(questionNumber){
     <span id="your-answer2" style="color:#0066cc;font-size:20px;">0</span>&nbsp;&nbsp;&nbsp;
     <button id="btn2" class="button2" onclick="update(Math.floor(22),'2');" style="display:none;">Lock in my answer!</button></p> 
  </div>
- <div class="slidecontainer" id="question1" onclick="updateAnswer(2);" style="white-space: nowrap;">
+ <div class="slidecontainer" id="question2" onclick="updateAnswer(2);" style="white-space: nowrap;">
    <input type="range" min="1" max="1000" value="50" class="slider" id="range1">
  </div> 
 </td>
