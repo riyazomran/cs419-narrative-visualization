@@ -18,7 +18,7 @@ margin:7px auto;
  }
   
 .cells {
-  fill: #aaa;
+  fill: #bf3737;
 }
 
 .label {
@@ -128,7 +128,7 @@ function updateAnswer(questionNumber){
  </div> 
 </td>
 <td style="vertical-align: top;" >
-    <svg width="600" height="300"></svg>
+    <svg id="svg1" width="600" height="300"></svg>
 </td>
 <td>
 
@@ -163,18 +163,18 @@ function updateAnswer(questionNumber){
     <button id="btn2" class="button2" onclick="update(Math.floor(22),'2');" style="display:none;">Lock in my answer!</button></p> 
  </div>
  <div class="slidecontainer" id="question2" onclick="updateAnswer(2);" style="white-space: nowrap;">
-   <input type="range" min="1" max="1000" value="50" class="slider" id="range1">
+   <input type="range" min="1" max="1000" value="50" class="slider" id="range2">
  </div> 
 </td>
 <td style="vertical-align: top;" >
-    <svg width="600" height="300"></svg>
+    <svg id="svg2" width="600" height="300"></svg>
 </td>
 <td>
 
-<span id="explaindesc1" style="display: none;"> 
+<span id="explaindesc2" style="display: none;"> 
 <font size="4" style="text-align: center;">Every day, 22 children and teens (1-17) are shot in the United States. Among those: </font>
 </span>
-<ul id="explain1" style="display: none;">
+<ul id="explain2" style="display: none;">
   <li>5 die from gun violence</li>
   <li>2 are murdered</li>
   <li>17 children and teens survive gunshot injuries</li>
@@ -186,14 +186,57 @@ function updateAnswer(questionNumber){
 </tr>
 </table>
 
+<table border="0">
+<tr>
+<td style="vertical-align: top;" width="800px">
+ <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>On average how many people are shot annually in the United States of America? </b></div> 
+ <div id="q1_slider_answer">
+    <p style="color:#0066cc;font-size:20px;">Your answer: &nbsp;&nbsp;&nbsp; 
+    <span id="your-answer3" style="color:#0066cc;font-size:20px;">0</span>&nbsp;&nbsp;&nbsp;
+    <button id="btn3" class="button2" onclick="update(Math.floor(115551),'3');" style="display:none;">Lock in my answer!</button></p> 
+ </div>
+ <div class="slidecontainer" id="question3" onclick="updateAnswer(3);" style="white-space: nowrap;">
+   <input type="range" min="1" max="200000" value="50" class="slider" id="range3">
+ </div> 
+</td>
+<td style="vertical-align: top;" >
+    <svg id="svg3" width="600" height="1000"></svg>
+</td>
+<td style="vertical-align: top;">
+<span id="explaindesc3" style="display: none;"> 
+<font size="4" style="text-align: center;">Every year, 115,551 people are shot. Among those: </font>
+</span>
+<ul id="explain3" style="display: none;">
+  <li>1,663 children and teens die from gun violence</li>
+  <li>864 are murdered</li>
+  <li>6,294 children and teens survive gunshot injuries</li>
+  <li>2,788 are intentionally shot by someone else and survive</li>
+  <li>662 die from gun suicide</li>
+  <li>166 survive an attempted gun suicide</li>
+  <li>10 are killed by legal intervention</li>
+  <li>101 are shot by legal intervention and survive</li>
+  <li>89 are killed unintentionally</li>
+  <li>38 die but the intent was unknown</li>
+  <li>380 are and survive shot but the intent is unknown</li>
+</ul>
+</td>
+</tr>
+</table>
+
 
 
 <svg width="960" height="990"></svg>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
-var formatNumber = d3.format(",d");
 
-var svg = d3.select("svg");
+
+
+function update(n1, question_number) {
+
+  
+  var formatNumber = d3.format(",d");
+
+var svg = d3.select("#svg" + question_number);
 
 var width = +svg.attr("width"),
     height = +svg.attr("height");
@@ -213,9 +256,7 @@ var cell = svg.append("g")
 
 var label = svg.append("text")
     .attr("class", "label");
-
-function update(n1, question_number) {
-
+  
   var explanation = document.getElementById("explain" + question_number);
   var description = document.getElementById("explaindesc" + question_number);
 
