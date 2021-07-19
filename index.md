@@ -111,7 +111,7 @@ function updateAnswer(questionNumber){
   
 
 
-<table border="0">
+<table border="1">
 <tr>
 <td style="vertical-align: top;" width="500px">
  <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>Guess the number of people shot and killed per day in the United States?</b></div> 
@@ -126,6 +126,7 @@ function updateAnswer(questionNumber){
 <td style="vertical-align: top;" >
     <svg width="600" height="300"></svg>
 </td>
+<td>test content</td>
 </tr>
 </table>
 
@@ -199,5 +200,4 @@ function update(n1) {
 }
 
 d3.select(self.frameElement).style("height", height + "px");
-
 </script>
