@@ -1,4 +1,19 @@
 <style>
+  
+.banner{
+width:100%;
+height: 100px;
+margin:7px auto;
+-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;
+padding-left:190px;
+}
+
+.banner0{ background: #0066cc  url(banner0.png) no-repeat center left;
+ }
+  
 .cells {
   fill: #aaa;
 }
@@ -56,7 +71,9 @@ function updateAnswer(questionNumber){
 }
 </script>
 
-<div align="center"><img src="images.png"></div>
+
+<div class="banner banner0"><div align="left"><img src="images.png"></div></div>
+
 <div style="line-weight:10px"><font size="4">We the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. While we can't control random acts of violence, we must aim to learn from them. Take the challenge by clicking the the arrow below!</font>
 </div>
 <div><hr></div>
