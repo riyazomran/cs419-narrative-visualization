@@ -111,13 +111,13 @@ function updateAnswer(questionNumber){
 <div style="line-weight:8px"><font size="5">We the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. While we can't control random acts of violence, we must aim to learn from them. Take the challenge by clicking the the arrow below!</font>
 </div>
 <div><br></div>
-  
 
+<!-- QUESTION #1 -->
 
 <table border="0">
 <tr>
 <td style="vertical-align: top;" width="800px">
- <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>Guess the number of people shot and killed per day in the United States?</b></div> 
+ <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>How many people are shot and killed per day in the United States?</b></div> 
  <div id="q1_slider_answer">
     <p style="color:#0066cc;font-size:20px;">Your answer: &nbsp;&nbsp;&nbsp; 
     <span id="your-answer1" style="color:#0066cc;font-size:20px;">0</span>&nbsp;&nbsp;&nbsp;
@@ -152,6 +152,41 @@ function updateAnswer(questionNumber){
 </td>
 </tr>
 </table>
+
+<table border="0">
+<tr>
+<td style="vertical-align: top;" width="800px">
+ <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>How many daily gun violence incidents happen that impact children and teens (ages 1-17)?</b></div> 
+ <div id="q1_slider_answer">
+    <p style="color:#0066cc;font-size:20px;">Your answer: &nbsp;&nbsp;&nbsp; 
+    <span id="your-answer2" style="color:#0066cc;font-size:20px;">0</span>&nbsp;&nbsp;&nbsp;
+    <button id="btn2" class="button2" onclick="update(Math.floor(22),'2');" style="display:none;">Lock in my answer!</button></p> 
+ </div>
+ <div class="slidecontainer" id="question1" onclick="updateAnswer(2);" style="white-space: nowrap;">
+   <input type="range" min="1" max="1000" value="50" class="slider" id="range1">
+ </div> 
+</td>
+<td style="vertical-align: top;" >
+    <svg width="600" height="300"></svg>
+</td>
+<td>
+
+<span id="explaindesc1" style="display: none;"> 
+<font size="4" style="text-align: center;">Every day, 22 children and teens (1-17) are shot in the United States. Among those: </font>
+</span>
+<ul id="explain1" style="display: none;">
+  <li>5 die from gun violence</li>
+  <li>2 are murdered</li>
+  <li>17 children and teens survive gunshot injuries</li>
+  <li>8 are intentionally shot by someone else and survive</li>
+  <li>2 children and teens either die from gun suicide or survive an attempted gun suicide</li>
+  <li>8 children and teens are unintentionally shot</li>
+</ul>
+</td>
+</tr>
+</table>
+
+
 
 <svg width="960" height="990"></svg>
 <script src="//d3js.org/d3.v3.min.js"></script>
