@@ -104,7 +104,7 @@ function updateAnswer(questionNumber){
 <td style="vertical-align: middle;" class="banner banner0">
     <font size="10" color="#ffffff">Cost of Gun Violence in America </font>
 </td>
-  <td colspan="3" align="right">Learn More <img src="image2.png"></td>
+  <td colspan="3" align="right">Click here to learn more <img src="image2.png"></td>
 </tr>
 </table>
 
