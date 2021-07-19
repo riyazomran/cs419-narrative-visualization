@@ -1,5 +1,8 @@
 <style>
-  
+.body {
+  font-family: Verdana, sans-serif;
+}
+
 .banner{
 width:100%;
 height: 200px;
@@ -24,7 +27,7 @@ margin:7px auto;
 }
  
  .slidecontainer {
-  width: 100%; /* Width of the outside container */
+  width: 90%; /* Width of the outside container */
 }
 
 /* The slider itself */
@@ -51,7 +54,7 @@ margin:7px auto;
   appearance: none;
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: #04AA6D; /* Green background */
+  background: #0066cc; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
@@ -61,6 +64,27 @@ margin:7px auto;
   background: #04AA6D; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
+
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
 </style>
 <script>
     
@@ -81,19 +105,29 @@ function updateAnswer(questionNumber){
 </div>
 
 <div><br></div>
-<div style="line-weight:10px"><font size="5">We the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. While we can't control random acts of violence, we must aim to learn from them. Take the challenge by clicking the the arrow below!</font>
+<div style="line-weight:8px"><font size="5">We the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. While we can't control random acts of violence, we must aim to learn from them. Take the challenge by clicking the the arrow below!</font>
 </div>
-<div><hr></div>
+<div><br></div>
   
-<div style="color:green;font-size:36px;">Guess the number of people shot and killed per day in the United States?</div> 
-<div id="q1_slider_answer"><p align="center"><span id="your-answer1" style="color:green;font-size:46px;">0</span></p></div>
-<div class="slidecontainer" id="question1" onclick="updateAnswer(1);">
+
+
+<table>
+<tr>
+<td style="vertical-align: top;">
+<div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>Guess the number of people shot and killed per day in the United States?</b></div> 
+<div id="q1_slider_answer">
+    <p style="color:#0066cc;font-size:20px;">Your answer: &nbsp;&nbsp;&nbsp; 
+    <span id="your-answer1" style="color:#0066cc;font-size:20px;">0</span>&nbsp;&nbsp;&nbsp;<button class="button2">Lock in my answer!</button></p> 
+</div>
+<div class="slidecontainer" id="question1" onclick="updateAnswer(1);" style="white-space: nowrap;">
   <input type="range" min="1" max="1000" value="50" class="slider" id="range1">
 </div> 
- <div>
-  <svg width="600" height="600"></svg>
- </div>
- 
+</td>
+<td style="vertical-align: top;">
+    <svg width="600" height="600"></svg>
+</td>
+</tr>
+</table>
 
 <svg width="960" height="990"></svg>
 <script src="//d3js.org/d3.v3.min.js"></script>
@@ -172,4 +206,3 @@ function update(n1) {
 d3.select(self.frameElement).style("height", height + "px");
 
 </script>
-
