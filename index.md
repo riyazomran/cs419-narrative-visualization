@@ -91,6 +91,9 @@ margin:7px auto;
 function updateAnswer(questionNumber){
   var slider = document.getElementById("range" + questionNumber);
   var output = document.getElementById("your-answer" + questionNumber);
+  var btn1 = document.getElementById("btn" + questionNumber);
+  
+  btn1.style.display="block";
   output.innerHTML = slider.value;
 }
 </script>
@@ -110,13 +113,15 @@ function updateAnswer(questionNumber){
 <div><br></div>
   
 
+
 <table border="0">
 <tr>
 <td style="vertical-align: top;" width="800px">
  <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>Guess the number of people shot and killed per day in the United States?</b></div> 
  <div id="q1_slider_answer">
     <p style="color:#0066cc;font-size:20px;">Your answer: &nbsp;&nbsp;&nbsp; 
-    <span id="your-answer1" style="color:#0066cc;font-size:20px;">0</span>&nbsp;&nbsp;&nbsp;<button class="button2" onclick="update(Math.floor(316));">Lock in my answer!</button></p> 
+    <span id="your-answer1" style="color:#0066cc;font-size:20px;">0</span>&nbsp;&nbsp;&nbsp;
+    <button id="btn1" class="button2" onclick="update(Math.floor(316),'1');" style="display:none;">Lock in my answer!</button></p> 
  </div>
  <div class="slidecontainer" id="question1" onclick="updateAnswer(1);" style="white-space: nowrap;">
    <input type="range" min="1" max="1000" value="50" class="slider" id="range1">
@@ -126,9 +131,12 @@ function updateAnswer(questionNumber){
     <svg width="600" height="300"></svg>
 </td>
 <td>
-<font size="4">When we breakdown the 316 daily deaths, we see the extent of the impact of normalizing gun ownership has : </font>
-<ul>
-<li>106 people are shot and killed</li>
+
+<span id="explaindesc1" style="display: none;"> 
+<font size="4" style="text-align: center;">When we breakdown the 316 daily deaths, we see the extent of the impact of normalizing gun ownership has : </font>
+</span>
+<ul id="explain1" style="display: none;">
+  <li>106 people are shot and killed</li>
   <li>210 survive gunshot injuries</li>
   <li>95 are intentionally shot by someone else and survive</li>
   <li>39 are murdered</li>
@@ -171,7 +179,14 @@ var cell = svg.append("g")
 var label = svg.append("text")
     .attr("class", "label");
 
-function update(n1) {
+function update(n1, question_number) {
+
+  var explanation = document.getElementById("explain" + question_number);
+  var description = document.getElementById("explaindesc" + question_number);
+
+  explanation.style.display="block";
+  description.style.display="block";
+
   var n0 = cell.size();
 
   cell = cell
