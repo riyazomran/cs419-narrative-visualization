@@ -14,7 +14,7 @@ margin:7px auto;
 
 }
 
-.banner0{ background: #0066cc no-repeat center left;
+.banner0{ background: #0066cc;
  }
   
 .cells {
