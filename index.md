@@ -221,7 +221,7 @@ function updateAnswer(questionNumber){
 </ul>
 </td>
 </tr>
-  <tr><td colspan="3"><img src="image2.jpg"></td></tr>
+  <tr><td colspan="3"><img src="image2.png"></td></tr>
 </table>
 
 
