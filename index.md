@@ -221,9 +221,11 @@ function updateAnswer(questionNumber){
 </ul>
 </td>
 </tr>
-  <tr><td colspan="3"><img src="image2.png"></td></tr>
 </table>
 
+<table>
+    <tr><td colspan="3"><img src="image2.png" width="100px" height="65px"></td></tr>
+ </table>
 
 
 <svg width="960" height="990"></svg>
