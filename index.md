@@ -1,6 +1,6 @@
 <style>
 .body {
-  font-family: Garamond;
+  font-family: Verdana, sans-serif;
 }
 
 .banner{
@@ -14,7 +14,7 @@ margin:7px auto;
 
 }
 
-.banner0{ background: #0066cc;
+.banner0{ background: #0066cc  url(banner0.png) no-repeat center left;
  }
   
 .cells {
@@ -98,7 +98,7 @@ function updateAnswer(questionNumber){
 <table>
 <tr>
 <td><img src="images.png"></td>
-<td style="vertical-align: middle;" class="banner banner0">
+<td style="vertical-align: top;" class="banner banner0">
     <font size="10" color="#ffffff">Cost of Gun Violence in America </font>
 </td>
 </tr>
@@ -111,20 +111,20 @@ function updateAnswer(questionNumber){
   
 
 
-<table>
+<table border="1">
 <tr>
-<td style="vertical-align: top;">
-<div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>Guess the number of people shot and killed per day in the United States?</b></div> 
-<div id="q1_slider_answer">
+<td style="vertical-align: top;" width="500px">
+ <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>Guess the number of people shot and killed per day in the United States?</b></div> 
+ <div id="q1_slider_answer">
     <p style="color:#0066cc;font-size:20px;">Your answer: &nbsp;&nbsp;&nbsp; 
-    <span id="your-answer1" style="color:#0066cc;font-size:20px;">0</span>&nbsp;&nbsp;&nbsp;<button class="button2">Lock in my answer!</button></p> 
-</div>
-<div class="slidecontainer" id="question1" onclick="updateAnswer(1);" style="white-space: nowrap;">
-  <input type="range" min="1" max="1000" value="50" class="slider" id="range1">
-</div> 
+    <span id="your-answer1" style="color:#0066cc;font-size:20px;">0</span>&nbsp;&nbsp;&nbsp;<button class="button2" onclick="update(Math.floor(316));">Lock in my answer!</button></p> 
+ </div>
+ <div class="slidecontainer" id="question1" onclick="updateAnswer(1);" style="white-space: nowrap;">
+   <input type="range" min="1" max="1000" value="50" class="slider" id="range1">
+ </div> 
 </td>
-<td style="vertical-align: top;">
-    <svg width="600" height="600"></svg>
+<td style="vertical-align: top;" >
+    <svg width="600" height="300"></svg>
 </td>
 </tr>
 </table>
@@ -197,11 +197,6 @@ function update(n1) {
         };
       });
 }
-
-(function interval() {
-  update(Math.floor(Math.random() * 100 * 100));
-  setTimeout(interval, updateDelay * 100 * 100 + updateDuration + 1000);
-})();
 
 d3.select(self.frameElement).style("height", height + "px");
 
