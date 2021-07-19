@@ -98,12 +98,12 @@ function updateAnswer(questionNumber){
 <table>
 <tr>
 <td><img src="images.png"></td>
-<td style="vertical-align: top;" class="banner banner0">
+<td style="vertical-align: middle;" class="banner banner0">
     <font size="10" color="#ffffff">Cost of Gun Violence in America </font>
 </td>
 </tr>
 </table>
-test
+
 <div><br></div>
 <div style="line-weight:8px"><font size="5">We the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. While we can't control random acts of violence, we must aim to learn from them. Take the challenge by clicking the the arrow below!</font>
 </div>
