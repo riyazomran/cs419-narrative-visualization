@@ -226,9 +226,7 @@ function updateAnswer(questionNumber){
 <table>
     <tr><td colspan="3"><img src="image2.png" width="50%" height="50%"></td></tr>
  </table>
-
-
-<svg width="960" height="990"></svg>
+ 
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
