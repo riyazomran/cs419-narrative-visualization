@@ -2,13 +2,13 @@
   
 .banner{
 width:100%;
-height: 100px;
+height: 200px;
 margin:7px auto;
 -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 -moz-border-radius: 15px;
 -webkit-border-radius: 15px;
-padding-left:190px;
+
 }
 
 .banner0{ background: #0066cc  url(banner0.png) no-repeat center left;
