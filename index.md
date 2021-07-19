@@ -72,9 +72,16 @@ function updateAnswer(questionNumber){
 </script>
 
 
-<div class="banner banner0"><div align="left"><img src="images.png"></div></div>
+<div class="banner banner0">
+<div align="left"><img src="images.png"></div>
+<div align="center">
+   <font size="10" color="#ffffff">Cost of Gun Violence in America </font></div>
+</div>
 
-<div style="line-weight:10px"><font size="4">We the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. While we can't control random acts of violence, we must aim to learn from them. Take the challenge by clicking the the arrow below!</font>
+</div>
+
+<div><br></div>
+<div style="line-weight:10px"><font size="5">We the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. While we can't control random acts of violence, we must aim to learn from them. Take the challenge by clicking the the arrow below!</font>
 </div>
 <div><hr></div>
   
