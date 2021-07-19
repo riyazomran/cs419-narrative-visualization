@@ -126,7 +126,21 @@ function updateAnswer(questionNumber){
 <td style="vertical-align: top;" >
     <svg width="600" height="300"></svg>
 </td>
-<td>test content</td>
+<td>
+<p>106 people are shot and killed
+210 survive gunshot injuries
+95 are intentionally shot by someone else and survive
+39 are murdered
+64 die from gun suicide
+10 survive an attempted gun suicide
+1 is killed unintentionally
+90 are shot unintentionally and survive
+1 is killed by legal intervention*
+4 are shot by legal intervention and survive
+1 died but the intent was unknown
+12 are shot and survive but the intent was unknown
+  </p>
+</td>
 </tr>
 </table>
 
