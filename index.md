@@ -97,8 +97,9 @@ function updateAnswer(questionNumber){
 
 <table>
 <tr>
+<td><img src="images.png"></td>
 <td style="vertical-align: top;" class="banner banner0">
-    <img src="images.png"><font size="10" color="#ffffff">Cost of Gun Violence in America </font>
+    <font size="10" color="#ffffff">Cost of Gun Violence in America </font>
 </td>
 </tr>
 </table>
