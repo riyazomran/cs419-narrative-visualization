@@ -127,19 +127,21 @@ function updateAnswer(questionNumber){
     <svg width="600" height="300"></svg>
 </td>
 <td>
-<p>106 people are shot and killed
-210 survive gunshot injuries
-95 are intentionally shot by someone else and survive
-39 are murdered
-64 die from gun suicide
-10 survive an attempted gun suicide
-1 is killed unintentionally
-90 are shot unintentionally and survive
-1 is killed by legal intervention*
-4 are shot by legal intervention and survive
-1 died but the intent was unknown
-12 are shot and survive but the intent was unknown
-  </p>
+<font size="4">When we breakdown the 316 daily deaths, we see the extent of the impact of normalizing gun ownership has : </font>
+<ul>
+<li>106 people are shot and killed</li>
+  <li>210 survive gunshot injuries</li>
+  <li>95 are intentionally shot by someone else and survive</li>
+  <li>39 are murdered</li>
+  <li>64 die from gun suicide</li>
+  <li>10 survive an attempted gun suicide</li>
+  <li>1 is killed unintentionally</li>
+  <li>90 are shot unintentionally and survive</li>
+  <li>1 is killed by legal intervention*</li>
+  <li>4 are shot by legal intervention and survive</li>
+  <li>1 died but the intent was unknown</li>
+  <li>12 are shot and survive but the intent was unknown</li>
+</ul>
 </td>
 </tr>
 </table>
@@ -214,4 +216,5 @@ function update(n1) {
 }
 
 d3.select(self.frameElement).style("height", height + "px");
+
 </script>
