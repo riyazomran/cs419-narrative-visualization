@@ -221,7 +221,7 @@ function updateAnswer(questionNumber){
 </ul>
 </td>
 </tr>
-  <tr><td colspan="3"><img src="american-flag-gun-semi-automatic-rifle-vector-24329034.jpg"></td></tr>
+  <tr><td colspan="3"><img src="image2.jpg"></td></tr>
 </table>
 
 
