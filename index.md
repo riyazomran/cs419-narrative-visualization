@@ -99,7 +99,7 @@ function updateAnswer(questionNumber){
 <div class="banner banner0">
 <div align="left"><img src="images.png"></div>
 <div align="center">
-   <font size="10" color="#ffffff">Cost of Gun Violence in America </font></div>
+   <font size="10" color="#ffffff">Cost of Gun Violence in America </font>
 </div>
 
 </div>
