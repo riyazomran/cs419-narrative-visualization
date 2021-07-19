@@ -98,7 +98,7 @@ function updateAnswer(questionNumber){
 <table>
 <tr>
 <td><img src="images.png"></td>
-<td style="vertical-align: top;" class="banner banner0">
+<td style="vertical-align: middle;" class="banner banner0">
     <font size="10" color="#ffffff">Cost of Gun Violence in America </font>
 </td>
 </tr>
@@ -111,7 +111,7 @@ function updateAnswer(questionNumber){
   
 
 
-<table border="1">
+<table border="0">
 <tr>
 <td style="vertical-align: top;" width="500px">
  <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>Guess the number of people shot and killed per day in the United States?</b></div> 
