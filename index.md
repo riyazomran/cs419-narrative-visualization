@@ -115,7 +115,7 @@ function updateAnswer(questionNumber){
 
 <!-- QUESTION #1 -->
 
-<table border="0">
+<table border="1">
 <tr>
 <td style="vertical-align: top;" width="800px">
  <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>How many people are shot and killed per day in the United States?</b></div> 
