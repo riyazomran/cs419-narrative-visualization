@@ -134,7 +134,7 @@ function updateAnswer(questionNumber){
 <td>
 
 <span id="explaindesc1" style="display: none;"> 
-<font size="4" style="text-align: center;">When we breakdown the 316 daily deaths, we see the extent of the impact of normalizing gun ownership has : </font>
+  <font size="4" style="text-align: center;">When we breakdown the <b>316 daily deaths</b>, we see the extent of the impact of normalizing gun ownership has : </font>
 </span>
 <ul id="explain1" style="display: none;">
   <li>106 people are shot and killed</li>
@@ -173,7 +173,7 @@ function updateAnswer(questionNumber){
 <td>
 
 <span id="explaindesc2" style="display: none;"> 
-<font size="4" style="text-align: center;">Every day, 22 children and teens (1-17) are shot in the United States. Among those: </font>
+  <font size="4" style="text-align: center;">Every day, <b>22 children and teens (1-17)</b> are shot in the United States. Among those: </font>
 </span>
 <ul id="explain2" style="display: none;">
   <li>5 die from gun violence</li>
@@ -205,7 +205,7 @@ function updateAnswer(questionNumber){
 </td>
 <td style="vertical-align: top;">
 <span id="explaindesc3" style="display: none;"> 
-<font size="4" style="text-align: center;">Every year, 115,551 people are shot. Among those: </font>
+  <font size="4" style="text-align: center;">Every year, <b>115,551 people are shot</b>. Among those: </font>
 </span>
 <ul id="explain3" style="display: none;">
   <li>1,663 children and teens die from gun violence</li>
