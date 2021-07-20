@@ -134,21 +134,21 @@ function updateAnswer(questionNumber){
 <td>
 
 <span id="explaindesc1" style="display: none;"> 
-<font size="4" style="text-align: center;">When we breakdown the 316 daily deaths, we see the extent of the impact of normalizing gun ownership has : </font>
+<font size="5" style="text-align: center;">When we breakdown the 316 daily deaths, we see the extent of the impact of normalizing gun ownership has : </font>
 </span>
 <ul id="explain1" style="display: none;">
-  <li>106 people are shot and killed</li>
-  <li>210 survive gunshot injuries</li>
-  <li>95 are intentionally shot by someone else and survive</li>
-  <li>39 are murdered</li>
-  <li>64 die from gun suicide</li>
-  <li>10 survive an attempted gun suicide</li>
-  <li>1 is killed unintentionally</li>
-  <li>90 are shot unintentionally and survive</li>
-  <li>1 is killed by legal intervention*</li>
-  <li>4 are shot by legal intervention and survive</li>
-  <li>1 died but the intent was unknown</li>
-  <li>12 are shot and survive but the intent was unknown</li>
+  <li><font size="5">106 people are shot and killed</font></li>
+  <li><font size="5">210 survive gunshot injuries</font></li>
+  <li><font size="5">95 are intentionally shot by someone else and survive</font></li>
+  <li><font size="5">39 are murdered</font></li>
+  <li><font size="5">64 die from gun suicide<</font>/li>
+  <li><font size="5">10 survive an attempted gun suicide</font></li>
+  <li><font size="5">1 is killed unintentionally</font></li>
+  <li><font size="5">90 are shot unintentionally and survive</font></li>
+  <li><font size="5">1 is killed by legal intervention</font></li>
+  <li><font size="5">4 are shot by legal intervention and survive</font></li>
+  <li><font size="5">1 died but the intent was unknown</font></li>
+  <li><font size="5">12 are shot and survive but the intent was unknown</font></li>
 </ul>
 </td>
 </tr>
