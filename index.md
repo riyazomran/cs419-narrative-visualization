@@ -129,7 +129,7 @@ function updateAnswer(questionNumber){
  </div> 
 </td>
 <td style="vertical-align: top;" >
-    <svg id="svg1" width="600" height="300"></svg>
+    <svg id="svg1" width="400" height="300"></svg>
 </td>
 <td>
 
