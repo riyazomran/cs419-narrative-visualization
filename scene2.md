@@ -124,20 +124,24 @@ margin:7px auto;
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script>
 
-function colorLogic(rate){
+function colorLogic(rate, option){
 
-   if(rate > 19){
-      return "rgb(255, 0, 0)";
-   } else if (rate <19 && rate >15){
-      return "rgb(0, 191, 255)";
-   } else if (rate <15 && rate >9){
-      return "rgb(0, 128, 255)";
-   } else if(rate <9 && rate >5){
-      return "rgb(0, 64, 255)";
-   } else {
-      return "rgb(0, 0, 255)";
-   }
-
+  if(option == 1){
+     return "	rgb(128,128,128)";
+  } else {
+  
+     if(rate > 19){
+        return "rgb(255, 0, 0)";
+     } else if (rate <19 && rate >15){
+        return "rgb(0, 191, 255)";
+     } else if (rate <15 && rate >9){
+        return "rgb(0, 128, 255)";
+     } else if(rate <9 && rate >5){
+        return "rgb(0, 64, 255)";
+     } else {
+        return "rgb(0, 0, 255)";
+     }
+ }
 }
 
 d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/Wonder-CDC-US%20-States-Gun-Violence.csv",function(data) {
@@ -219,7 +223,24 @@ var x = d3.scaleBand()
   }
   
   var onclick = function(d) {
-    alert(myColor(d.RATE));
+    svg.selectAll()
+    .data(data, function(d) {return d.YEAR+':'+d.STATE;})
+    .enter()
+    .append("rect")
+      .attr("x", function(d) { return x(d.YEAR) })
+      .attr("y", function(d) { return y(d.STATE) })
+      .attr("rx", 4)
+      .attr("ry",4)
+      .attr("width", x.bandwidth())
+      .attr("height", y.bandwidth())
+      .style("fill", function(d) { return colorLogic(d.RATE,2)} )
+      .style("stroke-width", 4)
+      .style("stroke", "none")
+      .style("opacity", 0.8)
+    .on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseleave", mouseleave)
+    .on("click",onclick)
   }
 
   svg.selectAll()
@@ -232,7 +253,7 @@ var x = d3.scaleBand()
       .attr("ry",4)
       .attr("width", x.bandwidth())
       .attr("height", y.bandwidth())
-      .style("fill", function(d) { return colorLogic(d.RATE)} )
+      .style("fill", function(d) { return colorLogic(d.RATE,1)} )
       .style("stroke-width", 4)
       .style("stroke", "none")
       .style("opacity", 0.8)
