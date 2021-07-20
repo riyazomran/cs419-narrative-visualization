@@ -156,7 +156,7 @@ function updateAnswer(questionNumber){
 
 <table border="0">
 <tr>
-<td style="vertical-align: top;" width="800px">
+<td style="vertical-align: top;" width="500px">
  <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>How many daily gun violence incidents happen that impact children and teens (ages 1-17)?</b></div> 
  <div id="q1_slider_answer">
     <p style="color:#0066cc;font-size:20px;">Your answer: &nbsp;&nbsp;&nbsp; 
@@ -189,7 +189,7 @@ function updateAnswer(questionNumber){
 
 <table border="0">
 <tr>
-<td style="vertical-align: top;" width="800px">
+<td style="vertical-align: top;" width="500px">
  <div style="color:#0066cc;font-size:20px;vertical-align: top;"><b>On average how many people are shot annually in the United States of America? </b></div> 
  <div id="q1_slider_answer">
     <p style="color:#0066cc;font-size:20px;">Your answer: &nbsp;&nbsp;&nbsp; 
