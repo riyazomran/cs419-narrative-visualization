@@ -1,6 +1,6 @@
 <style>
 .body {
-  font-family: Courier New;
+  font-family: 'Courier New', monospace;
 }
 
 .banner{
