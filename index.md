@@ -128,7 +128,7 @@ function updateAnswer(questionNumber){
    <input type="range" min="1" max="1000" value="50" class="slider" id="range1">
  </div> 
 </td>
-<td style="vertical-align: top;" >
+<td style="vertical-align: top;text-align: center;" >
     <svg id="svg1" width="450" height="300"></svg>
 </td>
 <td>
@@ -167,7 +167,7 @@ function updateAnswer(questionNumber){
    <input type="range" min="1" max="1000" value="50" class="slider" id="range2">
  </div> 
 </td>
-<td style="vertical-align: top;" >
+<td style="vertical-align: top;text-align: center;" >
     <svg id="svg2" width="450" height="300"></svg>
 </td>
 <td>
@@ -200,7 +200,7 @@ function updateAnswer(questionNumber){
    <input type="range" min="1" max="200000" value="50" class="slider" id="range3">
  </div> 
 </td>
-<td style="vertical-align: top;" >
+<td style="vertical-align: top;text-align: center;" >
     <svg id="svg3" width="450" height="800"></svg>
 </td>
 <td style="vertical-align: top;">
