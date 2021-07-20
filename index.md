@@ -168,7 +168,7 @@ function updateAnswer(questionNumber){
  </div> 
 </td>
 <td style="vertical-align: top;" >
-    <svg id="svg2" width="600" height="300"></svg>
+    <svg id="svg2" width="450" height="300"></svg>
 </td>
 <td>
 
@@ -201,7 +201,7 @@ function updateAnswer(questionNumber){
  </div> 
 </td>
 <td style="vertical-align: top;" >
-    <svg id="svg3" width="600" height="1000"></svg>
+    <svg id="svg3" width="450" height="800"></svg>
 </td>
 <td style="vertical-align: top;">
 <span id="explaindesc3" style="display: none;"> 
