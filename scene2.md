@@ -108,17 +108,6 @@ margin:7px auto;
 }
 </style>
 
-<script>
-    
-function updateAnswer(questionNumber){
-  var slider = document.getElementById("range" + questionNumber);
-  var output = document.getElementById("your-answer" + questionNumber);
-  var btn1 = document.getElementById("btn" + questionNumber);
-  
-  btn1.style.display="block";
-  output.innerHTML = slider.value;
-}
-</script>
 
 <table>
 <tr>
@@ -129,13 +118,128 @@ function updateAnswer(questionNumber){
 </tr>
 </table>
 
- <svg width="1200" height="750"></svg>
+<div id="state_heat_map"></div>
 
   <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script> 
-  <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script>
 
-d3.csv("Wonder-CDC-US -States-Gun-Violence.csv",function(data) {
-   document.write(data);
+function colorLogic(rate){
+
+   if(rate > 19){
+      return "rgb(255, 0, 0)";
+   } else if (rate <19 && rate >15){
+      return "rgb(0, 191, 255)";
+   } else if (rate <15 && rate >9){
+      return "rgb(0, 128, 255)";
+   } else if(rate <9 && rate >5){
+      return "rgb(0, 64, 255)";
+   } else {
+      return "rgb(0, 0, 255)";
+   }
+
 }
+
+d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/Wonder-CDC-US%20-States-Gun-Violence.csv",function(data) {
+
+// set the dimensions and margins of the graph
+var margin = {top: 20, right: 25, bottom: 30, left: 40},
+  width = 1000 - margin.left - margin.right,
+  height = 1200 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#state_heat_map")
+.append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+.append("g")
+  .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+
+var groupByYears = d3.map(data, function(d){return d.YEAR;}).keys()
+var groupByState=  d3.map(data, function(d){return d.STATE;}).keys()
+
+var x = d3.scaleBand()
+    .range([ 0, width ])
+    .domain(groupByYears)
+    .padding(0.05);
+  svg.append("g")
+    .style("font-size", 15)
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickSize(0))
+    .select(".domain").remove()
+
+  // Build Y scales and axis:
+  var y = d3.scaleBand()
+    .range([ height, 0 ])
+    .domain(groupByState)
+    .padding(0.05);
+  svg.append("g")
+    .style("font-size", 15)
+    .call(d3.axisLeft(y).tickSize(0))
+    .select(".domain").remove()
+    
+      var myColor = d3.scaleLinear().domain([1,26])
+  .range(["green", "red"]);
+  
+      
+      //d3.scaleSequential()
+    //.interpolator(d3.interpolateInferno)
+    //.domain([1,25])
+    
+      var Tooltip = d3.select("#state_heat_map")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "5px")
+    
+    var mouseover = function(d) {
+    Tooltip
+      .style("opacity", 1)
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1)
+  }
+  var mousemove = function(d) {
+    Tooltip
+      .html("State Gun Related Death Rate " + d.RATE)
+      .style("left", (d3.mouse(this)[0]+70) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px")
+  }
+  var mouseleave = function(d) {
+    Tooltip
+      .style("opacity", 0)
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 0.8)
+  }
+  
+  var onclick = function(d) {
+    alert(myColor(d.RATE));
+  }
+
+  svg.selectAll()
+    .data(data, function(d) {return d.YEAR+':'+d.STATE;})
+    .enter()
+    .append("rect")
+      .attr("x", function(d) { return x(d.YEAR) })
+      .attr("y", function(d) { return y(d.STATE) })
+      .attr("rx", 4)
+      .attr("ry",4)
+      .attr("width", x.bandwidth())
+      .attr("height", y.bandwidth())
+      .style("fill", function(d) { return colorLogic(d.RATE)} )
+      .style("stroke-width", 4)
+      .style("stroke", "none")
+      .style("opacity", 0.8)
+    .on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseleave", mouseleave)
+    .on("click",onclick)
+
+})
 </script>
