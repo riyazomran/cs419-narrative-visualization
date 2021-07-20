@@ -85,7 +85,29 @@ margin:7px auto;
   color: white;
 }
 
+.axis path{
+  stroke:black;
+  stroke-width:2px ;
+}   
+
+.axis line{
+  stroke: black;
+  stroke-width: 1.5px;
+} 
+  
+.axis text{
+  fill: black;
+  font-weight: bold;
+  font-size: 14px;
+  font-family:"Arial Black", Gadget, sans-serif;
+} 
+
+.legend text{
+   fill:  black;
+   font-family:"Arial Black", Gadget, sans-serif;
+}
 </style>
+
 <script>
     
 function updateAnswer(questionNumber){
@@ -104,15 +126,16 @@ function updateAnswer(questionNumber){
 <td style="vertical-align: middle;" class="banner banner0">
     <font size="10" color="#ffffff">Cost of Gun Violence in America </font>
 </td>
-  <!-- <td colspan="3" align="right">Click here to learn more <img src="image2.png"></td> -->
 </tr>
 </table>
 
-<div><br></div>
+ <svg width="1200" height="750"></svg>
 
-<script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script> 
+  <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
 <script>
 
-
-
+d3.csv("Wonder-CDC-US -States-Gun-Violence.csv",function(data) {
+   document.write(data);
+}
 </script>
