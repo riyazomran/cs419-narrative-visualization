@@ -1,6 +1,6 @@
 <style>
 .body {
-  font-family: Verdana, sans-serif;
+  font-family: Courier New;
 }
 
 .banner{
