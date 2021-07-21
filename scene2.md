@@ -186,8 +186,8 @@ var svg = d3.select("#state_heat_map")
   .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-var groupByYears = d3.map(data, function(d){return d.YEAR;}).keys()
-var groupByState=  d3.map(data, function(d){return d.STATE;}).keys()
+var groupByYears = d3.map(data, function(d){return d.YEAR;}).keys();
+var groupByState=  d3.map(data, function(d){return d.STATE;}).keys();
 
 var x = d3.scaleBand()
     .range([ 0, width ])
@@ -197,7 +197,7 @@ var x = d3.scaleBand()
     .style("font-size", 15)
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x).tickSize(0))
-    .select(".domain").remove()
+    .select(".domain").remove();
 
   // Build Y scales and axis:
   var y = d3.scaleBand()
@@ -207,9 +207,9 @@ var x = d3.scaleBand()
   svg.append("g")
     .style("font-size", 15)
     .call(d3.axisLeft(y).tickSize(0))
-    .select(".domain").remove()
+    .select(".domain").remove();
     
-      var myColor = d3.scaleLinear().domain([1,26])
+      var myColor = d3.scaleLinear().domain([1,26]);
 
   
       
@@ -225,27 +225,27 @@ var x = d3.scaleBand()
     .style("border", "solid")
     .style("border-width", "2px")
     .style("border-radius", "5px")
-    .style("padding", "5px")
+    .style("padding", "5px");
     
     var mouseover = function(d) {
     Tooltip
-      .style("opacity", 1)
+      .style("opacity", 1);
     d3.select(this)
       .style("stroke", "black")
-      .style("opacity", 1)
+      .style("opacity", 1);
   }
   var mousemove = function(d) {
     Tooltip
       .html("State Gun Related Death Rate " + d.RATE)
       .style("left", (d3.mouse(this)[0]+70) + "px")
-      .style("top", (d3.mouse(this)[1]) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px");
   }
   var mouseleave = function(d) {
     Tooltip
-      .style("opacity", 0)
+      .style("opacity", 0);
     d3.select(this)
       .style("stroke", "none")
-      .style("opacity", 0.8)
+      .style("opacity", 0.8);
   }
   
   var onclick = function(d) {
@@ -271,7 +271,7 @@ lineChart(data,d.STATE);
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
-    .on("click",onclick)
+    .on("click",onclick);
 
 })
 
@@ -314,8 +314,8 @@ data= refine(data,state);
 alert(data);
 
 //set canvas margins
-leftMargin=70
-topMargin=30
+var leftMargin=70;
+var topMargin=30;
 
 //format the year 
 var parseTime = d3.timeParse("%Y");
@@ -324,16 +324,16 @@ data.forEach(function (d) {
     d.YEAR = parseTime(d.YEAR);
 });
 
-//scale xAxis 
-var xExtent = d3.extent(data, d => d.YEAR);
-xScale = d3.scaleTime().domain(xExtent).range([leftMargin, 900])
 
-//scale yAxis
-var yMax=d3.max(data,d=>d.RATE)
-yScale = d3.scaleLinear().domain([0, 24]).range([600, 0])
+var xExtent = d3.extent(data, d => d.YEAR);
+xScale = d3.scaleTime().domain(xExtent).range([leftMargin, 900]);
+
+
+var yMax=d3.max(data,d=>d.RATE);
+yScale = d3.scaleLinear().domain([0, 24]).range([600, 0]);
 
 xAxis = d3.axisBottom()
-    .scale(xScale)
+    .scale(xScale);
     
 d3.select("svg")
     .append("g")
@@ -343,12 +343,12 @@ d3.select("svg")
     .append("text")
     .attr("x", (900+70)/2)
     .attr("y", "50")
-    .text("Year")
+    .text("Year");
 
 
 yAxis = d3.axisLeft()
     .scale(yScale)
-    .ticks(10)
+    .ticks(10);
 
 d3.select('svg')
     .append("g")
@@ -360,7 +360,7 @@ d3.select('svg')
     .attr("x", "-150")
     .attr("y", "-50")
     .attr("text-anchor", "end")
-    .text("Death Rate")
+    .text("Death Rate");
 
 yAxis = d3.axisLeft()
     .scale(yScale)
@@ -371,10 +371,8 @@ var sumstat = d3.nest()
     .key(d => d.STATE)
     .entries(data);
 
-console.log(sumstat)
-
-var state = sumstat.map(d => d.STATE) 
-var color = d3.scaleOrdinal().domain(state).range(colorbrewer.Set2[6])
+var state = sumstat.map(d => d.STATE);
+var color = d3.scaleOrdinal().domain(state).range(colorbrewer.Set2[6]);
 
 d3.select("svg")
     .selectAll(".line")
@@ -391,7 +389,7 @@ d3.select("svg")
     })
     .attr("fill", "none")
     .attr("stroke", d => color(d.key))
-    .attr("stroke-width", 2)
+    .attr("stroke-width", 2);
 
 
 //append circle 
@@ -404,7 +402,7 @@ d3.select("svg")
     .attr("r", 6)
     .attr("cx", d => xScale(d.YEAR))
     .attr("cy", d => yScale(d.RATE))
-    .style("fill", d => color(.094))
+    .style("fill", d => color(.094));
  
  }
  
