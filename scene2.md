@@ -148,8 +148,8 @@ d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualizati
 
 // set the dimensions and margins of the graph
 var margin = {top: 20, right: 25, bottom: 30, left: 40},
-  width = 1000 - margin.left - margin.right,
-  height = 1200 - margin.top - margin.bottom;
+  width = 500 - margin.left - margin.right,
+  height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#state_heat_map")
