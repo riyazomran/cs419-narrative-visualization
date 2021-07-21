@@ -140,14 +140,15 @@ margin:7px auto;
 </td>
 </tr>
 </table>
-<div id="state_heat_map"></div>
-<div id="graph"><svg width="1200" height="750"></svg>
 
-</div>
+<div id="state_heat_map"></div>
+<div id="graph"><svg width="1200" height="750"></svg></div>
 
   <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script> 
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+  <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+
+
 <script>
 
 function colorLogic(rate, option){
@@ -211,13 +212,7 @@ var x = d3.scaleBand()
     
       var myColor = d3.scaleLinear().domain([1,26]);
 
-  
-      
-      //d3.scaleSequential()
-    //.interpolator(d3.interpolateInferno)
-    //.domain([1,25])
-    
-      var Tooltip = d3.select("#state_heat_map")
+     var Tooltip = d3.select("#state_heat_map")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
