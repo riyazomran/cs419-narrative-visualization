@@ -147,9 +147,9 @@ function colorLogic(rate, option){
 d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/Wonder-CDC-US%20-States-Gun-Violence.csv",function(data) {
 
 // set the dimensions and margins of the graph
-var margin = {top: 20, right: 25, bottom: 30, left: 40},
-  width = 500 - margin.left - margin.right,
-  height = 500 - margin.top - margin.bottom;
+var margin = {top: 3, right: 25, bottom: 20, left: 200},
+  width = 300 - margin.left - margin.right,
+  height = 800 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#state_heat_map")
