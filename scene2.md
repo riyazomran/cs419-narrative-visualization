@@ -142,13 +142,14 @@ margin:7px auto;
 </table>
 
 <svg id="graphSVG" width="1000" height="750" ></svg>
-<svg id="state_heat_map" width="150" height="750" ></svg>
+<svg id="state_heat_map"></svg>
 
 
 
-  <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>  
+<script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 <script>
 
 function colorLogic(rate, option){
@@ -173,6 +174,7 @@ function colorLogic(rate, option){
 
 d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/Wonder-CDC-US%20-States-Gun-Violence.csv",function(data) {
 
+
 // set the dimensions and margins of the graph
 var margin = {top: 20, right: 25, bottom: 20, left: 120},
   width = 200 - margin.left - margin.right,
@@ -189,6 +191,7 @@ var svg = d3.select("#state_heat_map")
 var groupByYears = d3.map(data, function(d){return d.YEAR;}).keys();
 var groupByState=  d3.map(data, function(d){return d.STATE;}).keys();
 
+
 var x = d3.scaleBand()
     .range([ 0, width ])
     .domain(groupByYears)
@@ -201,7 +204,7 @@ var x = d3.scaleBand()
 
   // Build Y scales and axis:
   var y = d3.scaleBand()
-    .range([ height, 0 ])
+    .range([height, 0 ])
     .domain(groupByState)
     .padding(0.05);
     
@@ -274,6 +277,31 @@ lineChart(data,d.STATE);
     .on("mouseleave", mouseleave)
     .on("click",onclick);
 
+const annotations = [{
+  note: {
+    label: "Longer text to show text wrapping",
+    bgPadding: 20,
+    title: "Annotations :)"
+  },
+
+  className: "show-bg",
+  x: 2019,
+  y: 22.2,
+  dy: 10,
+  dx: 10
+}]
+
+// Add annotation to the chart
+const makeAnnotations = d3.annotation()
+  .annotations(annotations);
+
+d3.select("#graphSVG")
+  .append("g")
+  .call(makeAnnotations); 
+      
+      
+      
+      
 })
 
 function stateRecordCount(data,state){
@@ -397,7 +425,8 @@ graphSVG.selectAll("circle")
     .append("g")
     .data(data)
     .enter()
-    .append("circle")
+    .append("circle").transition()
+    .duration(5000)
     .attr("r", 6)
     .attr("cx", d => xScale(d.YEAR))
     .attr("cy", d => yScale(d.RATE))
