@@ -3,19 +3,19 @@
 .axis path{
     stroke:black;
     stroke-width:2px ;
-}   
+}  
 
 .axis line{
    stroke: black;
    stroke-width: 1.5px;
-} 
-  
+}
+ 
 .axis text{
     fill: black;
     font-weight: bold;
     font-size: 14px;
     font-family:"Arial Black", Gadget, sans-serif;
-} 
+}
 
 .legend text{
     fill:  black;
@@ -39,7 +39,7 @@ margin:7px auto;
 
 .banner0{ background: #0066cc  url(banner0.png) no-repeat center left;
  }
-  
+ 
 .cells {
   fill: #bf3737;
 }
@@ -98,8 +98,8 @@ margin:7px auto;
 }
 
 .button2 {
-  background-color: white; 
-  color: black; 
+  background-color: white;
+  color: black;
   border: 2px solid #008CBA;
 }
 
@@ -111,19 +111,19 @@ margin:7px auto;
 .axis path{
   stroke:black;
   stroke-width:2px ;
-}   
+}  
 
 .axis line{
   stroke: black;
   stroke-width: 1.5px;
-} 
-  
+}
+ 
 .axis text{
   fill: black;
   font-weight: bold;
   font-size: 14px;
   font-family:"Arial Black", Gadget, sans-serif;
-} 
+}
 
 .legend text{
    fill:  black;
@@ -141,22 +141,22 @@ margin:7px auto;
 </tr>
 </table>
 
-<div id="state_heat_map"></div>
-<div id="graph"><svg width="1200" height="750"></svg></div>
+<svg id="graphSVG" width="1000" height="750" ></svg>
+<svg id="state_heat_map" width="150" height="750" ></svg>
 
-  <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script> 
+
+
+  <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-  <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
-
-
+    <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
 <script>
 
 function colorLogic(rate, option){
 
   if(option == 1){
-     return "	rgb(128,128,128)";
+     return " rgb(128,128,128)";
   } else {
-  
+ 
      if(rate > 19){
         return "rgb(255, 0, 0)";
      } else if (rate <19 && rate >15){
@@ -174,13 +174,12 @@ function colorLogic(rate, option){
 d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/Wonder-CDC-US%20-States-Gun-Violence.csv",function(data) {
 
 // set the dimensions and margins of the graph
-var margin = {top: 3, right: 25, bottom: 20, left: 1300},
-  width = 1500 - margin.left - margin.right,
-  height = 800 - margin.top - margin.bottom;
+var margin = {top: 20, right: 25, bottom: 20, left: 120},
+  width = 200 - margin.left - margin.right,
+  height = 750 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#state_heat_map")
-.append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
 .append("g")
@@ -205,14 +204,21 @@ var x = d3.scaleBand()
     .range([ height, 0 ])
     .domain(groupByState)
     .padding(0.05);
+    
   svg.append("g")
     .style("font-size", 15)
     .call(d3.axisLeft(y).tickSize(0))
     .select(".domain").remove();
-    
+   
       var myColor = d3.scaleLinear().domain([1,26]);
 
-     var Tooltip = d3.select("#state_heat_map")
+ 
+     
+      //d3.scaleSequential()
+    //.interpolator(d3.interpolateInferno)
+    //.domain([1,25])
+   
+      var Tooltip = d3.select("#state_heat_map")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
@@ -221,7 +227,7 @@ var x = d3.scaleBand()
     .style("border-width", "2px")
     .style("border-radius", "5px")
     .style("padding", "5px");
-    
+   
     var mouseover = function(d) {
     Tooltip
       .style("opacity", 1);
@@ -242,7 +248,7 @@ var x = d3.scaleBand()
       .style("stroke", "none")
       .style("opacity", 0.8);
   }
-  
+ 
   var onclick = function(d) {
 d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/cdcdata.csv",function(data) {
 lineChart(data,d.STATE);
@@ -274,9 +280,9 @@ function stateRecordCount(data,state){
 
 var recordCount =0;
 for(var i=0; i < data.length; i++){
-        
+       
         var stateName = data[i].STATE;
-        
+       
         if(stateName == state){
             recordCount++;
         }
@@ -288,11 +294,11 @@ function refine(data,state){
 
     var array = new Array(stateRecordCount(data,state));
     var j =0;
-    
-		for(var i=0; i < data.length; i++){
-        
+   
+for(var i=0; i < data.length; i++){
+       
         var stateName = data[i].STATE;
-        
+       
         if(stateName == state){
             array[j] = data[i];
             j++;
@@ -304,15 +310,14 @@ function refine(data,state){
 
 function lineChart(data, state) {
 
-alert(state);
+
 data= refine(data,state);
-alert(data);
 
 //set canvas margins
 var leftMargin=70;
 var topMargin=30;
 
-//format the year 
+//format the year
 var parseTime = d3.timeParse("%Y");
 
 data.forEach(function (d) {
@@ -325,13 +330,17 @@ xScale = d3.scaleTime().domain(xExtent).range([leftMargin, 900]);
 
 
 var yMax=d3.max(data,d=>d.RATE);
-yScale = d3.scaleLinear().domain([0, 24]).range([600, 0]);
+yScale = d3.scaleLinear().domain([0, 25]).range([600, 0]);
 
 xAxis = d3.axisBottom()
     .scale(xScale);
-    
-d3.select("svg")
-    .append("g")
+   
+var graphSVG = d3.select("#graphSVG")
+.append("svg")
+  .attr("width", "1200")
+  .attr("height", "750");
+   
+    graphSVG.append("g")
     .attr("class", "axis")
     .attr("transform", "translate(0,620)")
     .call(xAxis)
@@ -345,8 +354,7 @@ yAxis = d3.axisLeft()
     .scale(yScale)
     .ticks(10);
 
-d3.select('svg')
-    .append("g")
+graphSVG.append("g")
     .attr("class", "axis")
     .attr("transform", `translate(${leftMargin},20)`)
     .call(yAxis)
@@ -362,15 +370,14 @@ yAxis = d3.axisLeft()
     .ticks(10);
 
 
-var sumstat = d3.nest() 
+var sumstat = d3.nest()
     .key(d => d.STATE)
     .entries(data);
 
 var state = sumstat.map(d => d.STATE);
 var color = d3.scaleOrdinal().domain(state).range(colorbrewer.Set2[6]);
 
-d3.select("svg")
-    .selectAll(".line")
+graphSVG.selectAll(".line")
     .append("g")
     .attr("class", "line")
     .data(sumstat)
@@ -386,10 +393,7 @@ d3.select("svg")
     .attr("stroke", d => color(d.key))
     .attr("stroke-width", 2);
 
-
-//append circle 
-d3.select("svg")
-    .selectAll("circle")
+graphSVG.selectAll("circle")
     .append("g")
     .data(data)
     .enter()
@@ -398,6 +402,8 @@ d3.select("svg")
     .attr("cx", d => xScale(d.YEAR))
     .attr("cy", d => yScale(d.RATE))
     .style("fill", d => color(.094));
+
+
  
  }
  
