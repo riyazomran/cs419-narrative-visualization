@@ -141,8 +141,17 @@ margin:7px auto;
 </tr>
 </table>
 
+<table>
+<tr>
+<td colspan="3" style="vertical-align:top;"><br><font size="5">Compare and contrast different states and death rates between 2014 & 2019. <b>Click the color coded cubes representing each state to the right to view the death rate curve across a 5 year period.</b> Use the quick link buttons to view the safest states and most dangerous states based on the number of gun related deaths.</font>
+</td>
+<td><img src="https://github.com/riyazomran/cs419-narrative-visualization/raw/gh-pages/legend.png" width="626" height="240"></td>
+</tr>
+</table>
+
 <svg id="graphSVG" width="1000" height="750" ></svg>
 <svg id="state_heat_map"></svg>
+
 
 
 
