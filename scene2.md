@@ -425,20 +425,20 @@ const annotations = data.map(function(d, i){
       note: {
         title: d.RATE,
         label: d.STATE,
-        wrap: 214, // text wrap threshold
-        align: 'right', //cf. right, middle, dynamic
+        wrap: 100, 
+        align: 'right', 
       },
-      connector: {end: 'dot'}, // cf. arrow
+      connector: {end: 'arrow'}, 
       x: xScale(+d.YEAR),
       y: yScale(+d.RATE),
-      dy: 10, // vertical offset
-      dx: 200,// horizontal offset
-      color: colorLogic( d.RATE,0) // send index to color scale
+      dy: 10, 
+      dx: 70,
+      color: colorLogic( d.RATE,0) 
     }
   })
 
   const makeAnnotations = d3.annotation()
-    .type(d3.annotationCalloutElbow)
+    .type(d3.annotationCalloutCircle)
     .annotations(annotations)
 
   graphSVG
