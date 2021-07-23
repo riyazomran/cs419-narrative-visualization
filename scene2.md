@@ -128,7 +128,7 @@ margin:7px auto;
 .legend text{
    fill:  black;
    font-family:"Arial Black", Gadget, sans-serif;
-}
+}https://jsfiddle.net/#run
 </style>
 
 
@@ -143,7 +143,9 @@ margin:7px auto;
 
 <table>
 <tr>
-<td colspan="3" style="vertical-align:top;"><br><font size="5">Compare and contrast different states and death rates between 2014 & 2019. <b>Click the color coded cubes representing each state to the right to view the death rate curve across a 5 year period.</b> Use the quick link buttons to view the safest states and most dangerous states based on the number of gun related deaths.</font>
+<td colspan="3" style="vertical-align:top;"><br><p>
+<font size="5">Compare and contrast different states with highest level of gun violence (least restrictive gun polcies) vs. those with the lowest level of gun violence (most restrictive gun policies) between 2014 & 2019. <b>Click the color coded cubes at opposite ends of the spectrum to see how each state trends. Compare the drastic difference over a 5 year period. </b></font></p>
+<p> <font size="5">Take note that the death rates shown across the year is color coded with the thresholds mapped to years of highest level of gun violence vs. lowest levels of gun violence. <br><i>For example compare <b><font color="blue">Hawaii</font</b> to <font color="red">Wyoming</font> year-over-year to see how state gun policies impact death rates.</font>.</i></p>
 </td>
 <td><img src="https://github.com/riyazomran/cs419-narrative-visualization/raw/gh-pages/legend.png" width="626" height="240"></td>
 </tr>
