@@ -112,6 +112,12 @@ function updateAnswer(questionNumber){
 <div style="line-weight:8px"><font size="5">We the people of the United States of America must start to recognize the inherant social costs of gun violence and the domino effect repercussions. The US gun homicide rate is 25 times that of other high-income countries. While we can't control random acts of violence, we must aim to learn from them. Take the challenge by clicking the the arrow below!</font>
 </div>
 <div><br></div>
+<div>
+    <button id="scene1" class="button2" style="background-color:grey;color:white;">1</button>
+    <button id="scene2" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/scene2';">2</button>
+    <button id="scene3" class="button2">3</button>
+</div>
+<div><hr></div>
 
 <!-- QUESTION #1 -->
 
