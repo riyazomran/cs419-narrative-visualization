@@ -145,13 +145,20 @@ margin:7px auto;
 <tr>
 <td colspan="3" style="vertical-align:top;"><br><p>
 <font size="5">Compare and contrast different states with highest level of gun violence (least restrictive gun polcies) vs. those with the lowest level of gun violence (most restrictive gun policies) between 2014 & 2019. <b>Click the color coded cubes at opposite ends of the spectrum to see how each state trends. Compare the drastic difference over a 5 year period. </b></font></p>
-<p> <font size="5">Take note that the death rates shown across the year is color coded with the thresholds mapped to years of highest level of gun violence vs. lowest levels of gun violence. <br><i>For example compare <b><font color="blue">Hawaii</font</b> to <font color="red">Wyoming</font> year-over-year to see how state gun policies impact death rates.</font>.</i></p>
+<p> <font size="5">Take note that the death rates shown across the year is color coded with the thresholds mapped to years of highest level of gun violence vs. lowest levels of gun violence. <br><i>For example compare <b><font color="blue">Hawaii</font></b> to <font color="red">Wyoming</font> year-over-year to see how state gun policies impact death rates.</font>.</i></p>
 </td>
 <td><img src="https://github.com/riyazomran/cs419-narrative-visualization/raw/gh-pages/legend.png" width="626" height="240"></td>
 </tr>
 </table>
+<div id="graphTitle" style="text-align : center; display:none;"><font size="6"> Gun Violence State Death Rate by Year (2014-2019)</font><br></div>
 <svg id="state_heat_map"></svg>
 <svg id="graphSVG" width="1220" height="750" ></svg>
+<div id="learnmore" style="display:none;">
+<font size="6"> Learn More Through CDC Wonder Data</font><br>
+<iframe id="learnMoreCDC" src="" title="Dig Deeper with CDC Wonder Data" width="1200" height="800" style="display:none;">
+</iframe>
+  
+</div>
 
 
 
@@ -307,12 +314,26 @@ for(var i=0; i < data.length; i++){
 return recordCount;
 }
 
+function getCDCURL(data,state){
+
+var recordCount =0;
+for(var i=0; i < data.length; i++){
+       
+        var stateName = data[i].STATE;
+       
+        if(stateName == state){
+            return data[i].URL;
+        }
+    }
+return "-1";
+}
+
 function refine(data,state){
 
     var array = new Array(stateRecordCount(data,state));
     var j =0;
    
-for(var i=0; i < data.length; i++){
+    for(var i=0; i < data.length; i++){
        
         var stateName = data[i].STATE;
        
@@ -327,7 +348,10 @@ for(var i=0; i < data.length; i++){
 
 function lineChart(data, state) {
 
-
+document.getElementById("learnmore").style.display="block";
+document.getElementById("graphTitle").style.display="block";
+document.getElementById("learnMoreCDC").src= "https://www.cdc.gov/" + getCDCURL(data,state);
+document.getElementById("learnMoreCDC").style.display ="block";
 data= refine(data,state);
 
 //set canvas margins
@@ -447,6 +471,7 @@ const annotations = data.map(function(d, i){
     .append("g")
     .attr("class", "annotation-group")
     .call(makeAnnotations)
+
 }
   
 
