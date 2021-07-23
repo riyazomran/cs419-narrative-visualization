@@ -150,6 +150,16 @@ margin:7px auto;
 <td><img src="https://github.com/riyazomran/cs419-narrative-visualization/raw/gh-pages/legend.png" width="626" height="240"></td>
 </tr>
 </table>
+
+<div><br></div>
+<div>
+    <button id="scene1" class="button2"  onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/index';">1</button>
+    <button id="scene2" class="button2" style="background-color:grey;color:white;" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/scene2';">2</button>
+    <button id="scene3" class="button2">3</button>
+</div>
+<div><hr></div>
+
+
 <div id="graphTitle" style="text-align : left; display:none;"><font size="6">  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gun Violence State Death Rate by Year (2014-2019)</font><br></div>
 <svg id="state_heat_map"></svg>
 <svg id="graphSVG" width="1220" height="750" ></svg>
