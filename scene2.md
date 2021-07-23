@@ -148,9 +148,9 @@ margin:7px auto;
 <td><img src="https://github.com/riyazomran/cs419-narrative-visualization/raw/gh-pages/legend.png" width="626" height="240"></td>
 </tr>
 </table>
-
-<svg id="graphSVG" width="1000" height="750" ></svg>
 <svg id="state_heat_map"></svg>
+<svg id="graphSVG" width="1220" height="750" ></svg>
+
 
 
 
@@ -267,6 +267,7 @@ lineChart(data,d.STATE);
 });
   }
 
+
     svg.selectAll()
     .data(data, function(d) {return d.YEAR+':'+d.STATE;})
     .enter()
@@ -285,32 +286,9 @@ lineChart(data,d.STATE);
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
     .on("click",onclick);
+    
+    
 
-const annotations = [{
-  note: {
-    label: "Longer text to show text wrapping",
-    bgPadding: 20,
-    title: "Annotations :)"
-  },
-
-  className: "show-bg",
-  x: 2019,
-  y: 22.2,
-  dy: 10,
-  dx: 10
-}]
-
-// Add annotation to the chart
-const makeAnnotations = d3.annotation()
-  .annotations(annotations);
-
-d3.select("#graphSVG")
-  .append("g")
-  .call(makeAnnotations); 
-      
-      
-      
-      
 })
 
 function stateRecordCount(data,state){
@@ -374,7 +352,7 @@ xAxis = d3.axisBottom()
    
 var graphSVG = d3.select("#graphSVG")
 .append("svg")
-  .attr("width", "1200")
+  .attr("width", "1500")
   .attr("height", "750");
    
     graphSVG.append("g")
@@ -442,8 +420,32 @@ graphSVG.selectAll("circle")
     .style("fill", d => color(.094));
 
 
- 
- }
- 
+const annotations = data.map(function(d, i){
+    return {
+      note: {
+        title: d.RATE,
+        label: d.STATE,
+        wrap: 214, // text wrap threshold
+        align: 'right', //cf. right, middle, dynamic
+      },
+      connector: {end: 'dot'}, // cf. arrow
+      x: xScale(+d.YEAR),
+      y: yScale(+d.RATE),
+      dy: 10, // vertical offset
+      dx: 200,// horizontal offset
+      color: colorLogic( d.RATE,0) // send index to color scale
+    }
+  })
+
+  const makeAnnotations = d3.annotation()
+    .type(d3.annotationCalloutElbow)
+    .annotations(annotations)
+
+  graphSVG
+    .append("g")
+    .attr("class", "annotation-group")
+    .call(makeAnnotations)
+}
+  
 
 </script>
