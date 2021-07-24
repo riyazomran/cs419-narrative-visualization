@@ -156,8 +156,7 @@ margin:7px auto;
 <div><hr></div>
 
 
-<div id="stateBarChart">
-</div>
+<div id="stateBarChart"></div>
 
 
 <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script>
@@ -237,18 +236,18 @@ function createValueMap(data,numberOfYears){
 
 }
 
+
+
 d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/cdcdata.csv",function(data) {
 
 
-data = createValueMap(data,3);
-var leftMargin=70;
+data = createValueMap(data,1);
+
+var leftMargin=122;
 var topMargin=30;
-
-
-var margin = {top: 20, right: 25, bottom: 20, left: 120},
-  width = 1500 - margin.left - margin.right,
-  height = 900 - margin.top - margin.bottom;
-
+var margin = {top: 20, right: 25, bottom: 20, left: 122};
+var width = 1500 - margin.left - margin.right;
+var height = 900 - margin.top - margin.bottom;
 var svg = d3.select("graphSVG");
 
 var statesDomain=  d3.map(data, function(d){return d.STATE;}).keys();
@@ -256,23 +255,21 @@ var deathsDomain =  d3.map(data, function(d){return d.DEATHS;}).keys();
 
 
 var xExtent = d3.extent(data, d => d.STATE);
-xScale = d3.scaleBand().domain(statesDomain).range([leftMargin, 1500]);
+xScale = d3.scaleBand().domain(statesDomain).range([leftMargin, width]).padding(0.4);
 
 
 var yMax=d3.max(data,d=>d.DEATHS);
-yScale = d3.scaleLinear().domain([0, yMax]).range([600, 0]);
-
-xAxis = d3.axisBottom()
-    .scale(xScale);
+yScale = d3.scaleLinear().domain([0, 5000]).range([height , 0]);
+xAxis = d3.axisBottom().scale(xScale);
    
 var graphSVG = d3.select("#stateBarChart")
 .append("svg")
-  .attr("width", "1600")
-  .attr("height", "750");
+  .attr("width", width)
+  .attr("height", height + 300);
    
     graphSVG.append("g")
     .attr("class", "axis")
-    .attr("transform", "translate(0,620)")
+    .attr("transform", "translate(0," + height + ")")
     .call(xAxis)
     .selectAll("text")
     .style("text-anchor", "end")
@@ -280,14 +277,15 @@ var graphSVG = d3.select("#stateBarChart")
     .attr("dy", ".15em")
     .attr("transform", "rotate(-65)")
     .append("text")
-    .attr("x", (900+70)/2)
-    .attr("y", "50")
+    .attr("x", (1500+70)/2)
+    .attr("y", "10")
     .text("Year");
 
 
 yAxis = d3.axisLeft()
     .scale(yScale)
     .ticks(10);
+   
 
 graphSVG.append("g")
     .attr("class", "axis")
@@ -295,12 +293,28 @@ graphSVG.append("g")
     .call(yAxis)
     .append("text")
     .attr("transform", "rotate(-90)")
-    .attr("x", "-150")
-    .attr("y", "-50")
+    .attr("x", "-200")
+    .attr("y", "-70")
     .attr("text-anchor", "end")
-    .text("Death Rate");
+    .text("Total Number of Deaths");
       
-      
+graphSVG.selectAll("rect")
+    .append("g")
+    .data(data)
+    .enter()
+    .append("rect")
+    .attr("x", d => xScale(d.STATE))
+    .attr("y", d => yScale(d.DEATHS))
+    .attr("width",  xScale.bandwidth())
+    .attr("height", function(d) { return height - yScale(d.DEATHS); })
+    .attr("fill", function(d) {
+    if (d.DEATHS >1500) {
+      return "red";
+    } else if (d.DEATHS < 1500 && d.DEATHS > 1000) {
+      return "orange";
+    }
+    return "green";
+  });
 })
 
 function stateRecordCount(data,state){
