@@ -156,7 +156,8 @@ margin:7px auto;
 <div><hr></div>
 
 
-<svg id="graphSVG" width="1220" height="750" ></svg>
+<div id="stateBarChart">
+</div>
 
 
 <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script>
@@ -245,7 +246,7 @@ var topMargin=30;
 
 
 var margin = {top: 20, right: 25, bottom: 20, left: 120},
-  width = 800 - margin.left - margin.right,
+  width = 1500 - margin.left - margin.right,
   height = 900 - margin.top - margin.bottom;
 
 var svg = d3.select("graphSVG");
@@ -255,18 +256,18 @@ var deathsDomain =  d3.map(data, function(d){return d.DEATHS;}).keys();
 
 
 var xExtent = d3.extent(data, d => d.STATE);
-xScale = d3.scaleBand().domain(statesDomain).range([leftMargin, 900]);
+xScale = d3.scaleBand().domain(statesDomain).range([leftMargin, 1500]);
 
 
 var yMax=d3.max(data,d=>d.DEATHS);
 yScale = d3.scaleLinear().domain([0, yMax]).range([600, 0]);
 
 xAxis = d3.axisBottom()
-    .scale(xScale).ticks(50);
+    .scale(xScale);
    
-var graphSVG = d3.select("#graphSVG")
+var graphSVG = d3.select("#stateBarChart")
 .append("svg")
-  .attr("width", "1500")
+  .attr("width", "1600")
   .attr("height", "750");
    
     graphSVG.append("g")
