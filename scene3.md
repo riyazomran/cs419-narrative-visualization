@@ -144,8 +144,11 @@ margin:7px auto;
 <table>
 <tr>
 <td colspan="3" style="vertical-align:top;"><br><p>
-<font size="5">TBD</font></p>
+<font size="5">Compare and contrast different states with highest level of gun violence (least restrictive gun polcies) vs. those with the lowest level of gun violence (most restrictive gun policies) between 2014 - 2019. <b>Click the color coded cubes at opposite ends of the spectrum to see how each state trends. Compare the drastic difference over a 5 year period. </b></font></p>
+<p> <font size="5">Take note that the death rates shown across the year is color coded with the thresholds mapped to years of highest level of gun violence vs. lowest levels of gun violence. <br><i>For example compare <b><font color="blue">Hawaii</font></b> to <font color="red">Wyoming</font> year-over-year to see how state gun policies impact death rates.</i></font>.</p>
 </td>
+<td><img src="https://github.com/riyazomran/cs419-narrative-visualization/raw/gh-pages/legend.png" width="626" height="240"></td>
+</tr>
 </table>
 
 <div>
@@ -156,7 +159,18 @@ margin:7px auto;
 <div><hr></div>
 
 
+<div id="graphTitle" style="text-align : left; display:none;"><font size="6">  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gun Violence State Death Rate by Year (2014-2019)</font><br></div>
+<svg id="state_heat_map"></svg>
 <svg id="graphSVG" width="1220" height="750" ></svg>
+<div id="learnmore" style="display:none;">
+<font size="6"> Learn More Through CDC Wonder Data</font><br>
+<iframe id="learnMoreCDC" src="" title="Dig Deeper with CDC Wonder Data" width="1200" height="800" style="display:none;">
+</iframe>
+  
+</div>
+
+
+
 
 
 <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script>
@@ -185,121 +199,114 @@ function colorLogic(rate, option){
  }
 }
 
-
-function getYearsArray(data,numberOfYears){
-
-var yearsArray = new Array(numberOfYears);
-
-   for(var j=0; j < numberOfYears; j++){
-     yearsArray[j] = 2014 + j;
-   }
-   
-return yearsArray;
-
-}
-
-function yearRecordCount(data,numberOfYears){
-
-var recordCount =0;
-var yearsArray = getYearsArray(data, numberOfYears);
-
-    for(var i=0; i < data.length; i++){
-       
-        var year = data[i].YEAR;
-
-        if(yearsArray.includes(parseInt(year))){
-            recordCount++;
-        }
-    }
-
-return recordCount;
-
-}
-
-function createValueMap(data,numberOfYears){
-
-    var valueArray = new Array(yearRecordCount(data,numberOfYears));
-		var yearsArray = getYearsArray(data, numberOfYears);
-    
-    for(var i=0; i < data.length; i++){
-       
-        var year = data[i].YEAR;
-       
-         if(yearsArray.includes(parseInt(year))){
-            valueArray[i] = data[i];
-        }
-    }
-   
-   return valueArray.filter(function (el) {
-       return el != null;
-    });
-
-}
-
-d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/cdcdata.csv",function(data) {
+d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/Wonder-CDC-US%20-States-Gun-Violence.csv",function(data) {
 
 
-data = createValueMap(data,3);
-var leftMargin=70;
-var topMargin=30;
-
-
+// set the dimensions and margins of the graph
 var margin = {top: 20, right: 25, bottom: 20, left: 120},
-  width = 800 - margin.left - margin.right,
-  height = 900 - margin.top - margin.bottom;
+  width = 200 - margin.left - margin.right,
+  height = 750 - margin.top - margin.bottom;
 
-var svg = d3.select("graphSVG");
+// append the svg object to the body of the page
+var svg = d3.select("#state_heat_map")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+.append("g")
+  .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
 
-var statesDomain=  d3.map(data, function(d){return d.STATE;}).keys();
-var deathsDomain =  d3.map(data, function(d){return d.DEATHS;}).keys();
+var groupByYears = d3.map(data, function(d){return d.YEAR;}).keys();
+var groupByState=  d3.map(data, function(d){return d.STATE;}).keys();
 
 
-var xExtent = d3.extent(data, d => d.STATE);
-xScale = d3.scaleBand().domain(statesDomain).range([leftMargin, 900]);
+var x = d3.scaleBand()
+    .range([ 0, width ])
+    .domain(groupByYears)
+    .padding(0.05);
+  svg.append("g")
+    .style("font-size", 15)
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickSize(0))
+    .select(".domain").remove();
 
-
-var yMax=d3.max(data,d=>d.DEATHS);
-yScale = d3.scaleLinear().domain([0, yMax]).range([600, 0]);
-
-xAxis = d3.axisBottom()
-    .scale(xScale).ticks(50);
+  // Build Y scales and axis:
+  var y = d3.scaleBand()
+    .range([height, 0 ])
+    .domain(groupByState)
+    .padding(0.05);
+    
+  svg.append("g")
+    .style("font-size", 15)
+    .call(d3.axisLeft(y).tickSize(0))
+    .select(".domain").remove();
    
-var graphSVG = d3.select("#graphSVG")
-.append("svg")
-  .attr("width", "1500")
-  .attr("height", "750");
+      var myColor = d3.scaleLinear().domain([1,26]);
+
+ 
+     
+      //d3.scaleSequential()
+    //.interpolator(d3.interpolateInferno)
+    //.domain([1,25])
    
-    graphSVG.append("g")
-    .attr("class", "axis")
-    .attr("transform", "translate(0,620)")
-    .call(xAxis)
-    .selectAll("text")
-    .style("text-anchor", "end")
-    .attr("dx", "-.8em")
-    .attr("dy", ".15em")
-    .attr("transform", "rotate(-65)")
-    .append("text")
-    .attr("x", (900+70)/2)
-    .attr("y", "50")
-    .text("Year");
+      var Tooltip = d3.select("#state_heat_map")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "5px");
+   
+    var mouseover = function(d) {
+    Tooltip
+      .style("opacity", 1);
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1);
+  }
+  var mousemove = function(d) {
+    Tooltip
+      .html("State Gun Related Death Rate " + d.RATE)
+      .style("left", (d3.mouse(this)[0]+70) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px");
+  }
+  var mouseleave = function(d) {
+    Tooltip
+      .style("opacity", 0);
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 0.8);
+  }
+ 
+  var onclick = function(d) {
+d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/cdcdata.csv",function(data) {
+lineChart(data,d.STATE);
+});
+  }
 
 
-yAxis = d3.axisLeft()
-    .scale(yScale)
-    .ticks(10);
+    svg.selectAll()
+    .data(data, function(d) {return d.YEAR+':'+d.STATE;})
+    .enter()
+    .append("rect")
+      .attr("x", function(d) { return x(d.YEAR) })
+      .attr("y", function(d) { return y(d.STATE) })
+      .attr("rx", 4)
+      .attr("ry",4)
+      .attr("width", x.bandwidth())
+      .attr("height", y.bandwidth())
+      .style("fill", function(d) { return colorLogic(d.RATE,2)} )
+      .style("stroke-width", 4)
+      .style("stroke", "none")
+      .style("opacity", 0.8)
+    .on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseleave", mouseleave)
+    .on("click",onclick);
+    
+    
 
-graphSVG.append("g")
-    .attr("class", "axis")
-    .attr("transform", `translate(${leftMargin},20)`)
-    .call(yAxis)
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("x", "-150")
-    .attr("y", "-50")
-    .attr("text-anchor", "end")
-    .text("Death Rate");
-      
-      
 })
 
 function stateRecordCount(data,state){
@@ -348,7 +355,133 @@ function refine(data,state){
   return array;
 }
 
+function lineChart(data, state) {
 
+document.getElementById("learnmore").style.display="block";
+document.getElementById("graphTitle").style.display="block";
+document.getElementById("learnMoreCDC").src= "https://www.cdc.gov/" + getCDCURL(data,state);
+document.getElementById("learnMoreCDC").style.display ="block";
+data= refine(data,state);
+
+//set canvas margins
+var leftMargin=70;
+var topMargin=30;
+
+//format the year
+var parseTime = d3.timeParse("%Y");
+
+data.forEach(function (d) {
+    d.YEAR = parseTime(d.YEAR);
+});
+
+
+var xExtent = d3.extent(data, d => d.YEAR);
+xScale = d3.scaleTime().domain(xExtent).range([leftMargin, 900]);
+
+
+var yMax=d3.max(data,d=>d.RATE);
+yScale = d3.scaleLinear().domain([0, 25]).range([600, 0]);
+
+xAxis = d3.axisBottom()
+    .scale(xScale);
+   
+var graphSVG = d3.select("#graphSVG")
+.append("svg")
+  .attr("width", "1500")
+  .attr("height", "750");
+   
+    graphSVG.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(0,620)")
+    .call(xAxis)
+    .append("text")
+    .attr("x", (900+70)/2)
+    .attr("y", "50")
+    .text("Year");
+
+
+yAxis = d3.axisLeft()
+    .scale(yScale)
+    .ticks(10);
+
+graphSVG.append("g")
+    .attr("class", "axis")
+    .attr("transform", `translate(${leftMargin},20)`)
+    .call(yAxis)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("x", "-150")
+    .attr("y", "-50")
+    .attr("text-anchor", "end")
+    .text("Death Rate");
+
+yAxis = d3.axisLeft()
+    .scale(yScale)
+    .ticks(10);
+
+
+var sumstat = d3.nest()
+    .key(d => d.STATE)
+    .entries(data);
+
+var state = sumstat.map(d => d.STATE);
+var color = d3.scaleOrdinal().domain(state).range(colorbrewer.Set2[6]);
+
+graphSVG.selectAll(".line")
+    .append("g")
+    .attr("class", "line")
+    .data(sumstat)
+    .enter()
+    .append("path")
+    .attr("d", function (d) {
+        return d3.line()
+            .x(d => xScale(d.YEAR))
+            .y(d => yScale(d.RATE)).curve(d3.curveCardinal)
+            (d.values)
+    })
+    .attr("fill", "none")
+    .attr("stroke", d => color(d.key))
+    .attr("stroke-width", 2);
+
+graphSVG.selectAll("circle")
+    .append("g")
+    .data(data)
+    .enter()
+    .append("circle").transition()
+    .duration(5000)
+    .attr("r", 6)
+    .attr("cx", d => xScale(d.YEAR))
+    .attr("cy", d => yScale(d.RATE))
+    .style("fill", d => color(.094));
+
+
+const annotations = data.map(function(d, i){
+    return {
+      note: {
+        title: d.RATE,
+        label: d.STATE,
+        wrap: 100, 
+        align: 'right', 
+      },
+      connector: {end: 'arrow'}, 
+      x: xScale(+d.YEAR),
+      y: yScale(+d.RATE),
+      dy: 10, 
+      dx: 70,
+      color: colorLogic( d.RATE,0) 
+    }
+  })
+
+  const makeAnnotations = d3.annotation()
+    .type(d3.annotationCalloutCircle)
+    .annotations(annotations)
+
+  graphSVG
+    .append("g")
+    .attr("class", "annotation-group")
+    .call(makeAnnotations)
+
+}
   
 
 </script>
