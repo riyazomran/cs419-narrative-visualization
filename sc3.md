@@ -159,7 +159,7 @@ margin:7px auto;
 
 <div id="stateBarChart"></div>
 
-<button class="button2" onclick=" clearAndRender(1)">;
+<button class="button2" onclick=" clearAndRender(2)">;
  TEST
 </button>
 
@@ -367,6 +367,35 @@ function renderChart(years){
       }
       return "green";
     });
+    
+    const annotations = data.map(function(d, i){
+    
+        return {
+          note: {
+            title: "Test",
+            label: "1",
+            wrap: 100, 
+            align: 'right', 
+          },
+          connector: {end: 'arrow'}, 
+          x: xScale(d.STATE),
+          y: yScale(stateDeathValueArray[lookupStateIndex(statesDomain,d.STATE)]),
+          dy: xScale.bandwidth(), 
+          dx: height - yScale(stateDeathValueArray[lookupStateIndex(statesDomain,d.STATE)]),
+          color: colorLogic( d.RATE,0) 
+        }
+
+  })
+
+  const makeAnnotations = d3.annotation()
+    .type(d3.annotationCalloutCircle)
+    .annotations(annotations)
+
+  graphSVG
+    .append("g")
+    .attr("class", "annotation-group")
+    .call(makeAnnotations)
+
   })
 }
 
@@ -420,6 +449,10 @@ function refine(data,state){
 
   return array;
 }
+
+
+  
+
 </script>
 
 </body>
