@@ -236,12 +236,53 @@ function createValueMap(data,numberOfYears){
 
 }
 
+function totalDeathsByState(data,state){
+
+var deaths =0;
+for(var i=0; i < data.length; i++){
+       
+        var stateName = data[i].STATE;
+       
+        if(stateName == state){
+            deaths = parseInt(data[i].DEATHS) + parseInt(deaths);
+        }
+    }
+return deaths;
+}
+
+
+function buildStateDeathMappingArray(data,stateDomain){
+
+	var stateDeathArray = new Array(50);
+	
+  for(var i=0; i < stateDomain.length; i++){
+  
+  	  var state = stateDomain[i];
+      var deathsForState = totalDeathsByState(data, state);
+  	  stateDeathArray [i] = deathsForState;
+  }
+
+  return stateDeathArray;
+}
+
+function lookupStateIndex(stateDomain, state){
+
+ for(var i=0; i < stateDomain.length; i++){
+  
+  	  if(stateDomain[i] == state){
+          return i;
+      }
+  }
+  
+  return 0;
+
+}
 
 
 d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/cdcdata.csv",function(data) {
 
 
-data = createValueMap(data,1);
+data = createValueMap(data,3);
 
 var leftMargin=122;
 var topMargin=30;
@@ -251,15 +292,20 @@ var height = 900 - margin.top - margin.bottom;
 var svg = d3.select("graphSVG");
 
 var statesDomain=  d3.map(data, function(d){return d.STATE;}).keys();
-var deathsDomain =  d3.map(data, function(d){return d.DEATHS;}).keys();
 
+data = data.sort(function(a, b) {
+  return d3.ascending(a.DEATHS, b.DEATHS)
+})
+
+var deathsDomain =  d3.map(data, function(d){return d.DEATHS;}).keys();
+var stateDeathValueArray = buildStateDeathMappingArray(data,statesDomain);
 
 var xExtent = d3.extent(data, d => d.STATE);
 xScale = d3.scaleBand().domain(statesDomain).range([leftMargin, width]).padding(0.4);
 
 
-var yMax=d3.max(data,d=>d.DEATHS);
-yScale = d3.scaleLinear().domain([0, 5000]).range([height , 0]);
+var yMax=d3.max(stateDeathValueArray);
+yScale = d3.scaleLinear().domain([0, yMax +1000]).range([height , 0]);
 xAxis = d3.axisBottom().scale(xScale);
    
 var graphSVG = d3.select("#stateBarChart")
@@ -302,11 +348,11 @@ graphSVG.selectAll("rect")
     .append("g")
     .data(data)
     .enter()
-    .append("rect")
+    .append("rect").transition().duration(4000)
     .attr("x", d => xScale(d.STATE))
-    .attr("y", d => yScale(d.DEATHS))
+    .attr("y", d => yScale(stateDeathValueArray[lookupStateIndex(statesDomain,d.STATE)]))
     .attr("width",  xScale.bandwidth())
-    .attr("height", function(d) { return height - yScale(d.DEATHS); })
+    .attr("height", function(d) { return height - yScale(stateDeathValueArray[lookupStateIndex(statesDomain,d.STATE)]); })
     .attr("fill", function(d) {
     if (d.DEATHS >1500) {
       return "red";
