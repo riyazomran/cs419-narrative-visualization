@@ -618,10 +618,6 @@ function refine(data,state){
 
   return array;
 }
-
-
-  
-
 </script>
 
-</body>
+
