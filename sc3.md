@@ -156,7 +156,8 @@ margin:7px auto;
 </div>
 <div><hr></div>
  <div>
- &nbsp;&nbsp;&nbsp;&nbsp;<button id="quickLink1" class="button2" onclick="renderAnnotations(document.getElementById('range1').value,1)">Flag States with Consistent High Death Counts</button>
+ &nbsp;&nbsp;&nbsp;&nbsp;<button id="quickLink1" class="button2" onclick="clearFlags();">Clear Flags</button>
+ <button id="quickLink2" class="button2" onclick="flagStatesWithHighGunViolence();">Flag States with Consistent High Death Counts</button>
  </div>
 <br>
 <div id="stateBarChart"></div>
@@ -176,6 +177,95 @@ margin:7px auto;
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
 <script>
+
+function clearFlags(){
+     d3.selectAll(".annotation-group").remove();
+}
+
+function flagStatesWithHighGunViolence(){
+
+var graphSVG = d3.select("#stateBarChart");
+
+const annotation1 = [
+{
+          note: {
+            title: "California : 2945 Deaths on Average",
+            label: "#2 top states highest death counts (not per capita)",
+            wrap: 100, 
+            align: 'right', 
+          },
+          connector: {end: 'arrow'}, 
+          x: 229,
+          y: -10,
+          dy: 50.46825396825403, 
+          dx: 300,
+          color: "black" 
+}];
+  
+    
+const annotation2 = [
+{
+          note: {
+            title: "Texas: 3683 Deaths on Average",
+            label: "#1 top state with highest gun related death counts (not per capita)",
+            wrap: 100, 
+            align: 'right', 
+          },
+          connector: {end: 'arrow'}, 
+          x: 1157.6031746031745,
+          y: -10,
+          dy: 140.46825396825403, 
+          dx: 300,
+          color: "black" 
+}];
+
+    
+const annotation3 = [
+{
+          note: {
+            title: "Florida: 2872 Deaths on Average",
+            label: "#3 top state with highest gun related death counts (not per capita)",
+            wrap: 100, 
+            align: 'right', 
+          },
+          connector: {end: 'arrow'}, 
+          x: 327.16666666666674,
+          y: -10,
+          dy: 80, 
+          dx: 10.654761904761903,
+          color: "black" 
+}];
+
+
+  const makeAnnotations = d3.annotation()
+    .type(d3.annotationCalloutCircle)
+    .annotations(annotation1);
+    
+  const makeAnnotations2 = d3.annotation()
+    .type(d3.annotationCalloutCircle)
+    .annotations(annotation2);
+    
+ const makeAnnotations3 = d3.annotation()
+    .type(d3.annotationCalloutCircle)
+    .annotations(annotation3);  
+
+      graphSVG
+        .append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations);
+
+      graphSVG
+        .append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations2);
+
+      graphSVG
+        .append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations3);
+
+}
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -533,3 +623,5 @@ function refine(data,state){
   
 
 </script>
+
+</body>
