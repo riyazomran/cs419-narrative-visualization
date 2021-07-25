@@ -115,7 +115,7 @@ function updateAnswer(questionNumber){
 <div>
     <button id="scene1" class="button2" style="background-color:grey;color:white;">1</button>
     <button id="scene2" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/scene2';">2</button>
-    <button id="scene3" class="button2">3</button>
+        <button id="scene3" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/sc3';">3</button>
 </div>
 <div><hr></div>
 
