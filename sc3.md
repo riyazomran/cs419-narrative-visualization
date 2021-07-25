@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://assets.ctl.io/chi/2.1.0/chi.css">
 <style>
 
 .axis path{
@@ -130,8 +131,7 @@ margin:7px auto;
    font-family:"Arial Black", Gadget, sans-serif;
 }
 </style>
-
-<body onload="renderChart(5);">
+<body onload="renderChart(1,0);">
 
 <table>
 <tr>
@@ -155,20 +155,30 @@ margin:7px auto;
     <button id="scene3" class="button2">3</button>
 </div>
 <div><hr></div>
-
+ <div>
+ &nbsp;&nbsp;&nbsp;&nbsp;<button id="quickLink1" class="button2" onclick="renderChart(document.getElementById('range1').value,1)">Flag States with Consistent High Death Counts</button>
+ </div>
 <br>
 <div id="stateBarChart"></div>
 
-<button class="button2" onclick=" clearAndRender(2)">;
- TEST
-</button>
+<br>
+ <font size="5" color="#0066cc;"><b><div id="sliderDateRange" style="color:#0066cc;text-align: center;">Gun Violence Data for 2014-2015 Time Period</div></b></font>
 
+<div class="slidecontainer" id="question1"  style="white-space: nowrap;">
+  <font size="5"><b>1 Year</b></font> &nbsp;<input type="range" min="2014" max="2019" value="1" class="slider" id="range1" onclick="clearAndRender(parseInt(2019)- ((parseInt(2019) - this.value) + parseInt(2014)));">&nbsp;<font size="5"><b>5 Year</b></font>
+ </div> 
+ <br>
 
+<span id="your-answer1" style="color:#0066cc;font-size:20px;">
 <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>  
 <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
 <script>
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
 function colorLogic(rate, option){
 
@@ -259,12 +269,13 @@ return deaths;
 function buildStateDeathMappingArray(data,stateDomain){
 
 	var stateDeathArray = new Array(50);
-	
+
   for(var i=0; i < stateDomain.length; i++){
   
   	  var state = stateDomain[i];
       var deathsForState = totalDeathsByState(data, state);
-  	  stateDeathArray [i] = deathsForState;
+      stateDeathArray [i] = deathsForState;
+      
   }
 
   return stateDeathArray;
@@ -283,7 +294,7 @@ function lookupStateIndex(stateDomain, state){
 
 }
 
-function renderChart(years){
+function renderChart(years,quicklink){
 
   d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/cdcdata.csv",function(data) {
   data = createValueMap(data,years);
@@ -295,11 +306,6 @@ function renderChart(years){
   var height = 900 - margin.top - margin.bottom;
 
   var statesDomain=  d3.map(data, function(d){return d.STATE;}).keys();
-
-  data = data.sort(function(a, b) {
-    return d3.ascending(a.DEATHS, b.DEATHS)
-  })
-
   var deathsDomain =  d3.map(data, function(d){return d.DEATHS;}).keys();
   var stateDeathValueArray = buildStateDeathMappingArray(data,statesDomain);
 
@@ -350,7 +356,7 @@ function renderChart(years){
       .append("g")
       .data(data)
       .enter()
-      .append("rect").transition().duration(4000)
+      .append("rect").transition().ease(d3.easeLinear).duration(2000)
       .attr("x", d => xScale(d.STATE))
       .attr("y", d => yScale(stateDeathValueArray[lookupStateIndex(statesDomain,d.STATE)])-240)
       .attr("width",  xScale.bandwidth())
@@ -361,45 +367,120 @@ function renderChart(years){
       if (deaths>(yMax * .80)) {
         return "red";
       } else if (deaths < (yMax * .80) && deaths > (yMax * .25)) {
-        return "orange";
+        return "rgb(0,191,255)";
       }
-      return "green";
+      return "blue";
     });
     
-    const annotations = data.map(function(d, i){
+    const annotation1 = data.map(function(d, i){
     
         return {
           note: {
-            title: "Test",
-            label: "1",
+            title: "California : 2945 Deaths on Average",
+            label: "#2 top states highest death counts (not per capita)",
             wrap: 100, 
             align: 'right', 
           },
           connector: {end: 'arrow'}, 
-          x: xScale(d.STATE),
-          y: yScale(stateDeathValueArray[lookupStateIndex(statesDomain,d.STATE)]),
-          dy: xScale.bandwidth(), 
-          dx: height - yScale(stateDeathValueArray[lookupStateIndex(statesDomain,d.STATE)]),
-          color: colorLogic( d.RATE,0) 
+          x: 229,
+          y: -10,
+          dy: 50.46825396825403, 
+          dx: 300,
+          color: "black" 
         }
+    })
+    
+     const annotation2 = data.map(function(d, i){
+    
+        return {
+          note: {
+            title: "Texas: 3683 Deaths on Average",
+            label: "#1 top state with highest gun related death counts (not per capita)",
+            wrap: 100, 
+            align: 'right', 
+          },
+          connector: {end: 'arrow'}, 
+          x: 1157.6031746031745,
+          y: -10,
+          dy: 140.46825396825403, 
+          dx: 300,
+          color: "black" 
+        }
+    })
+    
+     const annotation3 = data.map(function(d, i){
+    
+        return {
+          note: {
+            title: "Florida: 2872 Deaths on Average",
+            label: "#3 top state with highest gun related death counts (not per capita)",
+            wrap: 100, 
+            align: 'right', 
+          },
+          connector: {end: 'arrow'}, 
+          x: 327.16666666666674,
+          y: -10,
+          dy: 80, 
+          dx: 10.654761904761903,
+          color: "black" 
+        }
+    })
 
-  })
-/*
   const makeAnnotations = d3.annotation()
     .type(d3.annotationCalloutCircle)
-    .annotations(annotations)
+    .annotations(annotation1);
+    
+  const makeAnnotations2 = d3.annotation()
+    .type(d3.annotationCalloutCircle)
+    .annotations(annotation2);
+    
+ const makeAnnotations3 = d3.annotation()
+    .type(d3.annotationCalloutCircle)
+    .annotations(annotation3);  
 
-  graphSVG
-    .append("g")
-    .attr("class", "annotation-group")
-    .call(makeAnnotations)
-*/
-  })
+	if(quicklink == 1){
+      graphSVG
+        .append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations);
+
+      graphSVG
+        .append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations2);
+
+      graphSVG
+        .append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations3);
+		}
+  })		
+  
 }
 
-function clearAndRender(years){
+function clearAndRender(years, quicklink){
+
+	if(years == 0){
+     years = 1;
+  }
+	 
+	 var dateRangeText = "";
+   
+   if(years == 5){
+      dateRangeText = " Gun Violence Data for 2014-2019 Time Period";
+   } else if (years == 4){
+      dateRangeText = "Gun Violence Data for 2014-2018 Time Period";
+   } else if( years == 3){
+     dateRangeText = "Gun Violence Data for 2014-2017 Time Period";
+   } else if( years == 2){
+   		dateRangeText = "Gun Violence Data for 2014-2016 Time Period";
+   } else {
+  		dateRangeText = "Gun Violence Data for 2014-2015 Time Period";
+   }
+   
+   document.getElementById("sliderDateRange").innerHTML = dateRangeText;
    d3.select("#stateBarChart").selectAll("*").remove();
-   renderChart(years);
+   renderChart(years, quicklink);
 }
 
 function stateRecordCount(data,state){
