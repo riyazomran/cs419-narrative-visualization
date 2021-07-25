@@ -533,5 +533,3 @@ function refine(data,state){
   
 
 </script>
-
-</body>
