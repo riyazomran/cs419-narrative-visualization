@@ -133,6 +133,7 @@ margin:7px auto;
 </style>
 <body onload="renderChart(1,0);">
 
+<input id="sortState" type="hidden" value="-1" >
 <table>
 <tr>
 <td><img src="images.png"></td>
@@ -147,6 +148,7 @@ margin:7px auto;
 <td colspan="3" style="vertical-align:top;"><br><p>
 <font size="5">TBD</font></p>
 </td>
+</tr>
 </table>
 
 <div>
@@ -160,6 +162,7 @@ margin:7px auto;
  &nbsp;&nbsp;&nbsp;&nbsp;<button id="quickLink1" class="button2" onclick="clearFlags();">Clear Flags</button>
  <button id="quickLink2" class="button2" onclick="flagStatesWithHighGunViolence();">Flag States with Consistent High Death Counts</button>
    <button id="quickLink3" class="button2" onclick="flagWithLowestGunViolence();">Flag State with Lowest Death Counts</button>
+    <button id="quickLink4" class="button2" onclick="clearAndRender(parseInt(2019)- ((parseInt(2019) - document.getElementById('range1').value) + parseInt(2014)),'bubblesort'); document.getElementById('sortState').value=0;">Sort in Ascending Order (View Year-over-Year Variance in Rankings)</button>
  </div>
 <br>
 <div id="stateBarChart"></div>
@@ -168,7 +171,7 @@ margin:7px auto;
  <font size="5" color="#0066cc;"><b><div id="sliderDateRange" style="color:#0066cc;text-align: center;">Gun Violence Data for 2014-2015 Time Period</div></b></font>
 
 <div class="slidecontainer" id="question1"  style="white-space: nowrap;">
-  <font size="5"><b>1 Year</b></font> &nbsp;<input type="range" min="2014" max="2019" value="1" class="slider" id="range1" onclick="clearAndRender(parseInt(2019)- ((parseInt(2019) - this.value) + parseInt(2014)));">&nbsp;<font size="5"><b>5 Year</b></font>
+  <font size="5"><b>1 Year</b></font> &nbsp;<input type="range" min="2014" max="2019" value="1" class="slider" id="range1" onclick="clearAndRender(parseInt(2019)- ((parseInt(2019) - this.value) + parseInt(2014)),"");">&nbsp;<font size="5"><b>5 Year</b></font>
  </div> 
  <br>
 
@@ -188,117 +191,234 @@ function clearFlags(){
 function flagWithLowestGunViolence(){
 
 var graphSVG = d3.selectAll("svg");
+var sortState = document.getElementById("sortState").value;
 
-const annotation1 = [
-{
-          note: {
-            title: "Hawaii : 40 Deaths on Average",
-            label: "#1 state with lowest number of deaths related to gun violence (not per capita)",
-            wrap: 100, 
-            align: 'right', 
-          },
-          connector: {end: 'arrow'}, 
-          x: 376.01587301587307,
-          y: 608.3072739632903,
-          dy: -350.46825396825403, 
-          dx: 300,
-          color: "black" 
-}];
+if(sortState == -1){
+
+      const annotation1 = [
+      {
+                note: {
+                  title: "Hawaii : 40 Deaths on Average",
+                  label: "#1 state with lowest number of deaths related to gun violence (not per capita)",
+                  wrap: 100, 
+                  align: 'right', 
+                },
+                connector: {end: 'arrow'}, 
+                x: 376.01587301587307,
+                y: 608.3072739632903,
+                dy: -350.46825396825403, 
+                dx: 300,
+                color: "black" 
+      }];
+
+        const makeAnnotations = d3.annotation()
+          .type(d3.annotationCalloutCircle)
+          .annotations(annotation1);
+
+            graphSVG
+              .append("g")
+              .attr("class", "annotation-group")
+              .call(makeAnnotations);
+
+	} else {
+   
+  		 const annotation1 = [
+      {
+                note: {
+                  title: "Rhode Island & Hawaii : 34 & 40 Deaths on Average per Year",
+                  label: "The 2 state with lowest number of deaths related to gun violence (not per capita)",
+                  wrap: 100, 
+                  align: 'right', 
+                },
+                connector: {end: 'arrow'}, 
+                x: 156.19444444444449,
+                y: 608.30727396329033,
+                dy: -350.46825396825403, 
+                dx: 300,
+                color: "black" 
+      }];
+
+        const makeAnnotations = d3.annotation()
+          .type(d3.annotationCalloutCircle)
+          .annotations(annotation1);
+
+            graphSVG
+              .append("g")
+              .attr("class", "annotation-group")
+              .call(makeAnnotations);
+
   
-  const makeAnnotations = d3.annotation()
-    .type(d3.annotationCalloutCircle)
-    .annotations(annotation1);
-
-      graphSVG
-        .append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations);
-
+  }
 }
 
 
 function flagStatesWithHighGunViolence(){
 
 var graphSVG = d3.selectAll("svg");
+var sortState = document.getElementById("sortState").value;
 
-const annotation1 = [
-{
-          note: {
-            title: "California : 2945 Deaths on Average",
-            label: "#2 top states highest death counts (not per capita)",
-            wrap: 100, 
-            align: 'right', 
-          },
-          connector: {end: 'arrow'}, 
-          x: 229,
-          y: -10,
-          dy: 50.46825396825403, 
-          dx: 300,
-          color: "black" 
-}];
+if(sortState == -1){
+
+      const annotation1 = [
+      {
+                note: {
+                  title: "California : 3683 Deaths on Average",
+                  label: "#1 top states highest death counts (not per capita)",
+                  wrap: 100, 
+                  align: 'right', 
+                },
+                connector: {end: 'arrow'}, 
+                x: 229,
+                y: -10,
+                dy: 50.46825396825403, 
+                dx: 300,
+                color: "black" 
+      }];
+
+
+      const annotation2 = [
+      {
+                note: {
+                  title: "Texas: 2945 Deaths on Average",
+                  label: "#2 top state with highest gun related death counts (not per capita)",
+                  wrap: 100, 
+                  align: 'right', 
+                },
+                connector: {end: 'arrow'}, 
+                x: 1157.6031746031745,
+                y: -10,
+                dy: 140.46825396825403, 
+                dx: 300,
+                color: "black" 
+      }];
+
+
+      const annotation3 = [
+      {
+                note: {
+                  title: "Florida: 2872 Deaths on Average",
+                  label: "#3 top state with highest gun related death counts (not per capita)",
+                  wrap: 100, 
+                  align: 'right', 
+                },
+                connector: {end: 'arrow'}, 
+                x: 327.16666666666674,
+                y: -10,
+                dy: 80, 
+                dx: 10.654761904761903,
+                color: "black" 
+      }];
+
+
+        const makeAnnotations = d3.annotation()
+          .type(d3.annotationCalloutCircle)
+          .annotations(annotation1);
+
+        const makeAnnotations2 = d3.annotation()
+          .type(d3.annotationCalloutCircle)
+          .annotations(annotation2);
+
+       const makeAnnotations3 = d3.annotation()
+          .type(d3.annotationCalloutCircle)
+          .annotations(annotation3);  
+
+            graphSVG
+              .append("g")
+              .attr("class", "annotation-group")
+              .call(makeAnnotations);
+
+            graphSVG
+              .append("g")
+              .attr("class", "annotation-group")
+              .call(makeAnnotations2);
+
+            graphSVG
+              .append("g")
+              .attr("class", "annotation-group")
+              .call(makeAnnotations3);
+	
+  } else {
   
-    
-const annotation2 = [
-{
-          note: {
-            title: "Texas: 3683 Deaths on Average",
-            label: "#1 top state with highest gun related death counts (not per capita)",
-            wrap: 100, 
-            align: 'right', 
-          },
-          connector: {end: 'arrow'}, 
-          x: 1157.6031746031745,
-          y: -10,
-          dy: 140.46825396825403, 
-          dx: 300,
-          color: "black" 
-}];
-
-    
-const annotation3 = [
-{
-          note: {
-            title: "Florida: 2872 Deaths on Average",
-            label: "#3 top state with highest gun related death counts (not per capita)",
-            wrap: 100, 
-            align: 'right', 
-          },
-          connector: {end: 'arrow'}, 
-          x: 327.16666666666674,
-          y: -10,
-          dy: 80, 
-          dx: 10.654761904761903,
-          color: "black" 
-}];
+       const annotation1 = [
+          {
+                    note: {
+                      title: "California : 2945 Deaths on Average",
+                      label: "#2 top states highest death counts (not per capita)",
+                      wrap: 100, 
+                      align: 'right', 
+                    },
+                    connector: {end: 'arrow'}, 
+                    x: 1350,
+                    y: 0,
+                    dy: 200.46825396825403, 
+                    dx: -400,
+                    color: "black" 
+          }];
 
 
-  const makeAnnotations = d3.annotation()
-    .type(d3.annotationCalloutCircle)
-    .annotations(annotation1);
-    
-  const makeAnnotations2 = d3.annotation()
-    .type(d3.annotationCalloutCircle)
-    .annotations(annotation2);
-    
- const makeAnnotations3 = d3.annotation()
-    .type(d3.annotationCalloutCircle)
-    .annotations(annotation3);  
+          const annotation2 = [
+          {
+                    note: {
+                      title: "Texas: 3683 Deaths on Average",
+                      label: "#1 top state with highest gun related death counts (not per capita)",
+                      wrap: 100, 
+                      align: 'right', 
+                    },
+                    connector: {end: 'arrow'}, 
+                x: 1300.6031746031745,
+                y: 0,
+                dy: 180.46825396825403, 
+                dx: 150,
+                color: "black" 
+          }];
 
-      graphSVG
-        .append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations);
 
-      graphSVG
-        .append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations2);
+          const annotation3 = [
+          {
+                    note: {
+                      title: "Florida: 2872 Deaths on Average",
+                      label: "#3 top state with highest gun related death counts (not per capita)",
+                      wrap: 100, 
+                      align: 'right', 
+                    },
+                    connector: {end: 'arrow'}, 
+              	x: 1279.7261904761904,
+                y: 220,
+                dy:  10, 
+                dx: -200.654761904761903,
+                    color: "black" 
+          }];
 
-      graphSVG
-        .append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations3);
 
+            const makeAnnotations = d3.annotation()
+              .type(d3.annotationCalloutCircle)
+              .annotations(annotation1);
+
+            const makeAnnotations2 = d3.annotation()
+              .type(d3.annotationCalloutCircle)
+              .annotations(annotation2);
+
+           const makeAnnotations3 = d3.annotation()
+              .type(d3.annotationCalloutCircle)
+              .annotations(annotation3);  
+
+                graphSVG
+                  .append("g")
+                  .attr("class", "annotation-group")
+                  .call(makeAnnotations);
+
+                graphSVG
+                  .append("g")
+                  .attr("class", "annotation-group")
+                  .call(makeAnnotations2);
+
+                graphSVG
+                  .append("g")
+                  .attr("class", "annotation-group")
+                  .call(makeAnnotations3);
+  
+  
+  }
 }
 
 function getRandomInt(max) {
@@ -419,6 +539,27 @@ function lookupStateIndex(stateDomain, state){
 
 }
 
+ function stateBubbleSort(arr, stateDomain){
+     
+ for(var i = 0; i < arr.length; i++){
+
+   for(var j = 0; j < ( arr.length - i -1 ); j++){
+
+     if(arr[j] > arr[j+1]){
+
+       var temp = arr[j];
+       arr[j] = arr[j + 1];
+       arr[j+1] = temp;
+       
+       var temp2 = stateDomain[j];
+       stateDomain[j] = stateDomain[j+1];
+       stateDomain[j+1] = temp2;
+       
+     }
+   }
+ }
+}
+
 function renderChart(years,quicklink){
 
   d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/cdcdata.csv",function(data) {
@@ -433,10 +574,13 @@ function renderChart(years,quicklink){
   var statesDomain=  d3.map(data, function(d){return d.STATE;}).keys();
   var deathsDomain =  d3.map(data, function(d){return d.DEATHS;}).keys();
   var stateDeathValueArray = buildStateDeathMappingArray(data,statesDomain);
+  
+  if(quicklink=="bubblesort"){
+  		stateBubbleSort(stateDeathValueArray,statesDomain);
+  }
 
   var xExtent = d3.extent(data, d => d.STATE);
   xScale = d3.scaleBand().domain(statesDomain).range([leftMargin, width]).padding(0.4);
-
 
   var yMax=d3.max(stateDeathValueArray);
   yScale = d3.scaleLinear().domain([0, yMax]).range([height , 0]);
@@ -496,88 +640,6 @@ function renderChart(years,quicklink){
       }
       return "blue";
     });
-   
-   /*
-    const annotation1 = data.map(function(d, i){
-    
-        return {
-          note: {
-            title: "California : 2945 Deaths on Average",
-            label: "#2 top states highest death counts (not per capita)",
-            wrap: 100, 
-            align: 'right', 
-          },
-          connector: {end: 'arrow'}, 
-          x: 229,
-          y: -10,
-          dy: 50.46825396825403, 
-          dx: 300,
-          color: "black" 
-        }
-    })
-    
-     const annotation2 = data.map(function(d, i){
-    
-        return {
-          note: {
-            title: "Texas: 3683 Deaths on Average",
-            label: "#1 top state with highest gun related death counts (not per capita)",
-            wrap: 100, 
-            align: 'right', 
-          },
-          connector: {end: 'arrow'}, 
-          x: 1157.6031746031745,
-          y: -10,
-          dy: 140.46825396825403, 
-          dx: 300,
-          color: "black" 
-        }
-    })
-    
-     const annotation3 = data.map(function(d, i){
-    
-        return {
-          note: {
-            title: "Florida: 2872 Deaths on Average",
-            label: "#3 top state with highest gun related death counts (not per capita)",
-            wrap: 100, 
-            align: 'right', 
-          },
-          connector: {end: 'arrow'}, 
-          x: 327.16666666666674,
-          y: -10,
-          dy: 80, 
-          dx: 10.654761904761903,
-          color: "black" 
-        }
-    })
-
-  const makeAnnotations = d3.annotation()
-    .type(d3.annotationCalloutCircle)
-    .annotations(annotation1);
-    
-  const makeAnnotations2 = d3.annotation()
-    .type(d3.annotationCalloutCircle)
-    .annotations(annotation2);
-    
- const makeAnnotations3 = d3.annotation()
-    .type(d3.annotationCalloutCircle)
-    .annotations(annotation3);  
-
-      graphSVG
-        .append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations);
-
-      graphSVG
-        .append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations2);
-
-      graphSVG
-        .append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations3); */
     
   })		
   
@@ -656,4 +718,8 @@ function refine(data,state){
 }
 
 
+  
+
 </script>
+</span>
+</body>
