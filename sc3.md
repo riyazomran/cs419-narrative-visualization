@@ -204,6 +204,13 @@
     <font size="5"><b>1 Year</b></font> &nbsp;<input type="range" min="2014" max="2019" value="1" class="slider" id="range1" onclick="clearAndRender(parseInt(2019)- ((parseInt(2019) - this.value) + parseInt(2014)));">&nbsp;<font size="5"><b>5 Year</b></font>
   </div>
   <br>
+    <font size="5" color="#0066cc;"><b>
+      <div id="sliderDateRange2" style="color:#0066cc;text-align: center;">Aggregate Deaths Across Period of Time - <span id="sliderDeathCnt">100</span></div>
+    </b></font>
+<div class="slidecontainer" id="question2" style="white-space: nowrap;">
+    <font size="5"><b>100 Death</b></font> &nbsp;<input type="range" min="100" max="16000" value="100" class="slider" id="range2" onclick="document.getElementById('sliderDeathCnt').innerHTML = this.value;">&nbsp;<font size="5"><b>16,000 Deaths</b></font>
+</div>
+
 
   <span id="your-answer1" style="color:#0066cc;font-size:20px;">
     <script src="https://d3js.org/d3.v4.min.js" type="text/JavaScript"></script>
