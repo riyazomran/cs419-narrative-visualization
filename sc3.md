@@ -156,7 +156,7 @@ margin:7px auto;
 </div>
 <div><hr></div>
 
-
+<br>
 <div id="stateBarChart"></div>
 
 <button class="button2" onclick=" clearAndRender(2)">;
@@ -293,7 +293,6 @@ function renderChart(years){
   var margin = {top: 20, right: 25, bottom: 20, left: 122};
   var width = 1500 - margin.left - margin.right;
   var height = 900 - margin.top - margin.bottom;
-  var svg = d3.select("graphSVG");
 
   var statesDomain=  d3.map(data, function(d){return d.STATE;}).keys();
 
@@ -309,17 +308,17 @@ function renderChart(years){
 
 
   var yMax=d3.max(stateDeathValueArray);
-  yScale = d3.scaleLinear().domain([0, yMax +1000]).range([height , 0]);
+  yScale = d3.scaleLinear().domain([0, yMax]).range([height-260 , 0]);
   xAxis = d3.axisBottom().scale(xScale);
 
   var graphSVG = d3.select("#stateBarChart")
   .append("svg")
-    .attr("width", width)
-    .attr("height", height + 300);
+    .attr("width", "1500")
+    .attr("height", "750");
 
       graphSVG.append("g")
       .attr("class", "axis")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate(0,620)")
       .call(xAxis)
       .selectAll("text")
       .style("text-anchor", "end")
@@ -327,14 +326,13 @@ function renderChart(years){
       .attr("dy", ".15em")
       .attr("transform", "rotate(-65)")
       .append("text")
-      .attr("x", (1500+70)/2)
+      .attr("x", (900+70)/2)
       .attr("y", "10")
       .text("Year");
 
 
   yAxis = d3.axisLeft()
       .scale(yScale)
-      .ticks(10);
 
 
   graphSVG.append("g")
@@ -343,7 +341,7 @@ function renderChart(years){
       .call(yAxis)
       .append("text")
       .attr("transform", "rotate(-90)")
-      .attr("x", "-200")
+      .attr("x", "-100")
       .attr("y", "-70")
       .attr("text-anchor", "end")
       .text("Total Number of Deaths");
@@ -354,7 +352,7 @@ function renderChart(years){
       .enter()
       .append("rect").transition().duration(4000)
       .attr("x", d => xScale(d.STATE))
-      .attr("y", d => yScale(stateDeathValueArray[lookupStateIndex(statesDomain,d.STATE)]))
+      .attr("y", d => yScale(stateDeathValueArray[lookupStateIndex(statesDomain,d.STATE)])-240)
       .attr("width",  xScale.bandwidth())
       .attr("height", function(d) { return height - yScale(stateDeathValueArray[lookupStateIndex(statesDomain,d.STATE)]); })
       .attr("fill", function(d) {
@@ -386,7 +384,7 @@ function renderChart(years){
         }
 
   })
-
+/*
   const makeAnnotations = d3.annotation()
     .type(d3.annotationCalloutCircle)
     .annotations(annotations)
@@ -395,7 +393,7 @@ function renderChart(years){
     .append("g")
     .attr("class", "annotation-group")
     .call(makeAnnotations)
-
+*/
   })
 }
 
