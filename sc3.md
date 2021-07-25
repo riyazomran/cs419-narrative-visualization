@@ -171,7 +171,7 @@
           <font size="5">In the previous visualization we focused on comparing death rate trends between states across 5 year period. In this slide we will start look at raw number of deaths by state and how gun violence actually impacts each life from state-to-state. We will also see if there are variances or change in gun violence in various year ranges between 2014-2019.  In the visualization below you will find quick link buttons that allow you to: <b><br>&nbsp;&nbsp;&nbsp;&nbsp;(1) View the data sorted year-over-year: <br>&nbsp;&nbsp;&nbsp; (2) View additional details of states with consistently high death counts year-over-year <br>&nbsp;&nbsp;&nbsp;&nbsp;(3) States that have historically show the lowest death counts year-over-year.</b></font><br>   
         </p>
         <p>
-         <font size="5">Last use the slider below the visualization to view changes in gun violence across different periods of time. </font>
+         <font size="5">Last use the slider below the visualization to view changes in gun violence across different periods of time OR limit the number of deaths to a specific threshold to see the states to see the states that fall under that threshold.</font>
         </p>
       </td>
     </tr>
@@ -208,7 +208,7 @@
       <div id="sliderDateRange2" style="color:#0066cc;text-align: center;">Aggregate Deaths Across Period of Time - <span id="sliderDeathCnt">100</span></div>
     </b></font>
 <div class="slidecontainer" id="question2" style="white-space: nowrap;">
-    <font size="5"><b>100 Death</b></font> &nbsp;<input type="range" min="100" max="16000" value="100" class="slider" id="range2" onclick="document.getElementById('sliderDeathCnt').innerHTML = this.value;">&nbsp;<font size="5"><b>16,000 Deaths</b></font>
+    <font size="5"><b>100 Death</b></font> &nbsp;<input type="range" min="100" max="16000" value="100" class="slider" id="range2" onclick="clearAndRenderByDeathCnt(this.value, 'deathCntSlider');document.getElementById('sliderDeathCnt').innerHTML = this.value;">&nbsp;<font size="5"><b>16,000 Deaths</b></font>
 </div>
 
 
@@ -225,7 +225,7 @@
 
 
       function flagWithLowestGunViolence() {
-
+				//clearAndRender(document.getElementById("range1").value, "");
         var graphSVG = d3.selectAll("svg");
         var sortState = document.getElementById("sortState").value;
 
@@ -292,9 +292,10 @@
 
       function flagStatesWithHighGunViolence() {
 
+				//clearAndRender(document.getElementById("range1").value, "");
         var graphSVG = d3.selectAll("svg");
         var sortState = document.getElementById("sortState").value;
-
+        
         if (sortState == -1) {
 
           const annotation1 = [{
@@ -534,9 +535,25 @@
           }
         }
 
-        return valueArray.filter(function(el) {
-          return el != null;
-        });
+        return valueArray.filter(function(el) { return el != null;});
+
+      }
+      
+      function createDeathCntMap(data, deathCount) {
+
+        var valueArray = new Array(data.length);
+
+        for (var i = 0; i < data.length; i++) {
+
+          var deaths = data[i].DEATHS;
+
+          if (parseInt(deaths) <= parseInt(deathCount)){
+            console.log(deaths);
+            valueArray[i] = data[i];
+          }
+        }
+
+        return valueArray.filter(function(el) {return el != null;});
 
       }
 
@@ -608,6 +625,11 @@
 
         d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/cdcdata.csv", function(data) {
           data = createValueMap(data, years);
+          
+          if(quicklink == "deathCntSlider"){
+          	data = createDeathCntMap(data, document.getElementById("range2").value);
+          }
+
 
           var leftMargin = 122;
           var topMargin = 30;
@@ -630,8 +652,8 @@
 
           if (quicklink == "bubblesort") {
             stateBubbleSort(stateDeathValueArray, statesDomain);
-          }
-
+          } 
+          
           var xExtent = d3.extent(data, d => d.STATE);
           xScale = d3.scaleBand().domain(statesDomain).range([leftMargin, width]).padding(0.4);
 
@@ -724,6 +746,16 @@
         document.getElementById("sliderDateRange").innerHTML = dateRangeText;
         d3.select("#stateBarChart").selectAll("*").remove();
         renderChart(years, quicklink);
+      }
+      
+      function clearAndRenderByDeathCnt(cntThreshold, quicklink) {
+
+        if (cntThreshold == 0) {
+          cntThreshold = 100;
+        }
+
+        d3.select("#stateBarChart").selectAll("*").remove();
+        renderChart(document.getElementById('range1').value, "deathCntSlider");
       }
 
       function stateRecordCount(data, state) {
