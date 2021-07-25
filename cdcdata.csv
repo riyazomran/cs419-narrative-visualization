@@ -59,7 +59,7 @@ YEAR,STATE,RATE,DEATHS,URL
 2018,Delaware,11.6,107,/nchs/pressroom/states/delaware/de.htm
 2018,Florida,12.9,2902,/nchs/pressroom/states/florida/fl.htm
 2018,Georgia,15.7,1680,/nchs/pressroom/states/georgia/ga.htm
-2018,Hawaii,4,59,/nchs/pressroom/states/hawaii/hi.htm
+2018,Hawaii,4,1,/nchs/pressroom/states/hawaii/hi.htm
 2018,Idaho,16.6,294,/nchs/pressroom/states/idaho/id.htm
 2018,Illinois,10.9,1382,/nchs/pressroom/states/illinois/il.htm
 2018,Indiana,14.7,977,/nchs/pressroom/states/indiana/in.htm
@@ -209,7 +209,7 @@ YEAR,STATE,RATE,DEATHS,URL
 2015,Delaware,12.1,112,/nchs/pressroom/states/delaware/delaware.htm
 2015,Florida,12,2559,/nchs/pressroom/states/florida/florida.htm
 2015,Georgia,14.1,1448,/nchs/pressroom/states/georgia/georgia.htm
-2015,Hawaii,3.6,55,/nchs/pressroom/states/hawaii/hawaii.htm
+2015,Hawaii,3.6,0,/nchs/pressroom/states/hawaii/hawaii.htm
 2015,Idaho,14.7,247,/nchs/pressroom/states/idaho/idaho.htm
 2015,Illinois,9.5,1220,/nchs/pressroom/states/illinois/illinois.htm
 2015,Indiana,12.7,846,/nchs/pressroom/states/indiana/indiana.htm
