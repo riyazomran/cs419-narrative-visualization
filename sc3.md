@@ -158,6 +158,7 @@ margin:7px auto;
  <div>
  &nbsp;&nbsp;&nbsp;&nbsp;<button id="quickLink1" class="button2" onclick="clearFlags();">Clear Flags</button>
  <button id="quickLink2" class="button2" onclick="flagStatesWithHighGunViolence();">Flag States with Consistent High Death Counts</button>
+   <button id="quickLink3" class="button2" onclick="flagWithLowestGunViolence();">Flag State with Lowest Death Counts</button>
  </div>
 <br>
 <div id="stateBarChart"></div>
@@ -182,9 +183,42 @@ function clearFlags(){
      d3.selectAll(".annotation-group").remove();
 }
 
+
+function flagWithLowestGunViolence(){
+
+var graphSVG = d3.selectAll("svg");
+
+const annotation1 = [
+{
+          note: {
+            title: "Hawaii : 40 Deaths on Average",
+            label: "#1 state with lowest number of deaths related to gun violence (not per capita)",
+            wrap: 100, 
+            align: 'right', 
+          },
+          connector: {end: 'arrow'}, 
+          x: 376.01587301587307,
+          y: 608.3072739632903,
+          dy: -350.46825396825403, 
+          dx: 300,
+          color: "black" 
+}];
+  
+  const makeAnnotations = d3.annotation()
+    .type(d3.annotationCalloutCircle)
+    .annotations(annotation1);
+
+      graphSVG
+        .append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations);
+
+}
+
+
 function flagStatesWithHighGunViolence(){
 
-var graphSVG = d3.select("#stateBarChart");
+var graphSVG = d3.selectAll("svg");
 
 const annotation1 = [
 {
@@ -404,7 +438,7 @@ function renderChart(years,quicklink){
 
 
   var yMax=d3.max(stateDeathValueArray);
-  yScale = d3.scaleLinear().domain([0, yMax]).range([height-260 , 0]);
+  yScale = d3.scaleLinear().domain([0, yMax]).range([height , 0]);
   xAxis = d3.axisBottom().scale(xScale);
 
   var graphSVG = d3.select("#stateBarChart")
@@ -424,7 +458,7 @@ function renderChart(years,quicklink){
       .append("text")
       .attr("x", (900+70)/2)
       .attr("y", "10")
-      .text("Year");
+      .text("States");
 
 
   yAxis = d3.axisLeft()
@@ -433,11 +467,11 @@ function renderChart(years,quicklink){
 
   graphSVG.append("g")
       .attr("class", "axis")
-      .attr("transform", `translate(${leftMargin},20)`)
+      .attr("transform", `translate(${leftMargin},-240)`)
       .call(yAxis)
       .append("text")
       .attr("transform", "rotate(-90)")
-      .attr("x", "-100")
+      .attr("x", "-300")
       .attr("y", "-70")
       .attr("text-anchor", "end")
       .text("Total Number of Deaths");
@@ -461,7 +495,8 @@ function renderChart(years,quicklink){
       }
       return "blue";
     });
-    
+   
+   /*
     const annotation1 = data.map(function(d, i){
     
         return {
@@ -541,7 +576,7 @@ function renderChart(years,quicklink){
       graphSVG
         .append("g")
         .attr("class", "annotation-group")
-        .call(makeAnnotations3);
+        .call(makeAnnotations3); */
     
   })		
   
@@ -618,6 +653,8 @@ function refine(data,state){
 
   return array;
 }
+
+
+  
+
 </script>
-
-
