@@ -156,7 +156,7 @@ margin:7px auto;
 </div>
 <div><hr></div>
  <div>
- &nbsp;&nbsp;&nbsp;&nbsp;<button id="quickLink1" class="button2" onclick="renderChart(document.getElementById('range1').value,1)">Flag States with Consistent High Death Counts</button>
+ &nbsp;&nbsp;&nbsp;&nbsp;<button id="quickLink1" class="button2" onclick="renderAnnotations(document.getElementById('range1').value,1)">Flag States with Consistent High Death Counts</button>
  </div>
 <br>
 <div id="stateBarChart"></div>
@@ -438,7 +438,6 @@ function renderChart(years,quicklink){
     .type(d3.annotationCalloutCircle)
     .annotations(annotation3);  
 
-	if(quicklink == 1){
       graphSVG
         .append("g")
         .attr("class", "annotation-group")
@@ -453,10 +452,11 @@ function renderChart(years,quicklink){
         .append("g")
         .attr("class", "annotation-group")
         .call(makeAnnotations3);
-		}
+    
   })		
   
 }
+
 
 function clearAndRender(years, quicklink){
 
