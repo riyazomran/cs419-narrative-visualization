@@ -188,8 +188,8 @@
   </div>
   <div>
     &nbsp;&nbsp;&nbsp;&nbsp;<button id="quickLink1" class="button2" onclick="clearFlags();">Clear Flags</button>
-    <button id="quickLink2" class="button2" onclick="flagStatesWithHighGunViolence();">Flag States with Consistent High Death Counts</button>
-    <button id="quickLink3" class="button2" onclick="flagWithLowestGunViolence();">Flag State with Lowest Death Counts</button>
+<!--    <button id="quickLink2" class="button2" onclick="flagStatesWithHighGunViolence();">Flag States with Consistent High Death Counts</button>
+    <button id="quickLink3" class="button2" onclick="flagWithLowestGunViolence();">Flag State with Lowest Death Counts</button> <-->
     <button id="quickLink4" class="button2" onclick="clearAndRender(parseInt(2019)- ((parseInt(2019) - document.getElementById('range1').value) + parseInt(2014)),'bubblesort'); document.getElementById('sortState').value=0;">Sort in Ascending Order (View Year-over-Year Variance in Rankings)</button>
   </div>
   <br>
@@ -717,7 +717,11 @@
               }
               return "blue";
             });
-
+            
+            if(quicklink != "deathCntSlider"){
+							flagStatesWithHighGunViolence();
+              flagWithLowestGunViolence();
+            }
         })
 
       }
@@ -753,7 +757,7 @@
         if (cntThreshold == 0) {
           cntThreshold = 100;
         }
-
+				clearFlags();
         d3.select("#stateBarChart").selectAll("*").remove();
         renderChart(document.getElementById('range1').value, "deathCntSlider");
       }
