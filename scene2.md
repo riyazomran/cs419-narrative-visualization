@@ -155,9 +155,9 @@ margin:7px auto;
     <button id="scene1" class="button2"  onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/index';">1</button>
     <button id="scene2" class="button2" style="background-color:grey;color:white;" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/scene2';">2</button>
     <button id="scene3" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/sc3';">3</button>
+    <button id="quickLink1" class="button2" onclick="clearGraph();">Reset Visualization</button>
 </div>
 <div><hr></div>
-
 
 <div id="graphTitle" style="text-align : left; display:none;"><font size="6">  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gun Violence State Death Rate by Year (2014-2019)</font><br></div>
 <svg id="state_heat_map"></svg>
@@ -179,6 +179,14 @@ margin:7px auto;
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 <script>
 
+function clearGraph() {
+    location.reload();
+}
+
+function clearAnnotations() {
+   d3.selectAll(".annotation-group").remove();
+}
+
 function colorLogic(rate, option){
 
   if(option == 1){
@@ -199,6 +207,28 @@ function colorLogic(rate, option){
  }
 }
 
+ function stateBubbleSort(arr, stateDomain) {
+
+        for (var i = 0; i < arr.length; i++) {
+
+          for (var j = 0; j < (arr.length - i - 1); j++) {
+
+            if (arr[j].DEATHS > arr[j + 1].DEATHS) {
+
+              var temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+
+              var temp2 = stateDomain[j];
+              stateDomain[j] = stateDomain[j + 1];
+              stateDomain[j + 1] = temp2;
+
+            }
+          }
+        }
+      }
+
+
 d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/Wonder-CDC-US%20-States-Gun-Violence.csv",function(data) {
 
 
@@ -216,8 +246,9 @@ var svg = d3.select("#state_heat_map")
         "translate(" + margin.left + "," + margin.top + ")");
 
 var groupByYears = d3.map(data, function(d){return d.YEAR;}).keys();
-var groupByState=  d3.map(data, function(d){return d.STATE;}).keys();
+var groupByState=  d3.map(data, function(d){return d.STATE;}).keys().reverse();
 
+//stateBubbleSort(data,groupByState);
 
 var x = d3.scaleBand()
     .range([ 0, width ])
@@ -281,7 +312,7 @@ var x = d3.scaleBand()
  
   var onclick = function(d) {
 d3.csv("https://raw.githubusercontent.com/riyazomran/cs419-narrative-visualization/gh-pages/cdcdata.csv",function(data) {
-lineChart(data,d.STATE);
+			lineChart(data,d.STATE);
 });
   }
 
@@ -424,7 +455,7 @@ var sumstat = d3.nest()
     .key(d => d.STATE)
     .entries(data);
 
-var state = sumstat.map(d => d.STATE);
+//var state = sumstat.map(d => d.STATE);
 var color = d3.scaleOrdinal().domain(state).range(colorbrewer.Set2[6]);
 
 graphSVG.selectAll(".line")
@@ -481,6 +512,68 @@ const annotations = data.map(function(d, i){
     .attr("class", "annotation-group")
     .call(makeAnnotations)
 
+   var dynamicAnnotations = ["Hawaii : Violent crime rate: 309.2 per 100,000 (21st lowest)|Poverty rate: 9.3% (2nd lowest)", "Alabama: Violent crime rate: 532.3 per 100,000 (7th highest)|Poverty rate: 17.1% (7th highest)", "Alaska : Violent crime rate: 804.2 per 100,000 (the highest) | Poverty rate: 9.9% (6th lowest)","Arizona : Violent crime rate: 470.1 per 100,000 (12th highest)|Poverty rate: 16.4% (8th highest)","Arkansas : Violent crime rate: 550.9 per 100,000 (6th highest)|Poverty rate: 17.2% (6th highest)","California : Violent crime rate: 445.3 per 100,000 (15th highest)|Poverty rate: 14.3% (20th highest)", "Colorado : Total firearm deaths 2016: 812 (suicides: 613, homicides: 161)|Poverty rate: 11.0% (12th lowest)", "Connecticut : Violent crime rate: 227.1 per 100,000 (5th lowest)|Poverty rate: 9.8% (4th lowest)","Delaware : Violent crime rate: 508.8 per 100,000 (9th highest)|Poverty rate: 11.7% (16th lowest)", "Florida : Violent crime rate: 430.3 per 100,000 (18th highest)|Poverty rate: 14.7% (16th highest)", "Georgia : Violent crime rate: 397.6 per 100,000 (21st highest)|Poverty rate: 16.0% (10th highest)","Idaho : Violent crime rate: 230.3 per 100,000 (6th lowest) | Violent crime rate: 230.3 per 100,000 (6th lowest)", "Illinois : Violent crime rate: 436.3 per 100,000 (16th highest)|Poverty rate: 13.0% (24th lowest)", "Indiana : Violent crime rate: 404.7 per 100,000 (20th highest)|Poverty rate: 14.1% (21st highest)","Iowa : Violent crime rate: 290.6 per 100,000 (16th lowest) | Poverty rate: 11.8% (18th lowest)","Kansas : Violent crime rate: 380.4 per 100,000 (22nd highest) | Poverty rate: 12.1% (20th lowest)", "Kentucky : Violent crime rate: 232.3 per 100,000 (7th lowest)|Poverty rate: 18.5% (4th highest)", " Louisiana : Violent crime rate: 566.1 per 100,000 (5th highest)|Poverty rate: 20.2% (2nd highest)", "Maine : Violent crime rate: 123.8 per 100,000 (the lowest) | Violent crime rate: 123.8 per 100,000 (the lowest)", "Maryland : Violent crime rate: 472.0 per 100,000 (11th highest)|Poverty rate: 9.7% (3rd lowest)", "Massachusetts : Violent crime rate: 376.9 per 100,000 (23rd highest)| Poverty rate: 10.4% (9th lowest)", "Michigan : Violent crime rate: 459.0 per 100,000 (13th highest)|Poverty rate: 15.0% (15th highest)", "Minnesota : Violent crime rate: 242.6 per 100,000 (9th lowest)|Poverty rate: 9.9% (6th lowest)", "Missouri : Violent crime rate: 519.4 per 100,000 (8th highest)|Violent crime rate: 519.4 per 100,000 (8th highest)","Montana : Violent crime rate: 368.3 per 100,000 (25th lowest)|Poverty rate: 13.3% (24th highest)", "Nebraska : Violent crime rate: 291.0 per 100,000 (17th lowest)|Poverty rate: 11.4% (15th lowest)","Nevada : Violent crime rate: 678.1 per 100,000 (3rd highest)|Poverty rate: 13.8% (23rd highest)", "New Hampshire : Violent crime rate: 197.6 per 100,000 (3rd lowest)|Poverty rate: 7.3% (the lowest)", "New Jersey : Violent crime rate: 245.0 per 100,000 (12th lowest) | Poverty rate: 10.4% (9th lowest)", " New Mexico : Violent crime rate: 702.5 per 100,000 (2nd highest) | Poverty rate: 19.8% (3rd highest)" , " New York :Violent crime rate: 376.2 per 100,000 (24th highest)| Poverty rate: 14.7% (16th highest)","North Carolina : Violent crime rate: 372.2 per 100,000 (25th highest)| Poverty rate: 15.4% (13th highest)", "North Dakota : Violent crime rate: 251.1 per 100,000 (13th lowest) | Poverty rate: 10.7% (10th lowest)", " Ohio : Violent crime rate: 300.3 per 100,000 (18th lowest) | Poverty rate: 14.6% (18th highest)","Oklahoma : Violent crime rate: 449.8 per 100,000 (14th highest)|Poverty rate: 16.3% (9th highest)", "Oregon : Violent crime rate: 264.6 per 100,000 (14th lowest) | Poverty rate: 13.3% (24th highest)", " Pennsylvania : Violent crime rate: 316.4 per 100,000 (22nd lowest)| Poverty rate: 12.9% (23rd lowest)", "Rhode Island : Violent crime rate: 238.9 per 100,000 (8th lowest)|Poverty rate: 12.8% (22nd lowest)", "South Carolina : Violent crime rate: 501.8 per 100,000 (10th highest)|Poverty rate: 15.3% (14th highest)", "South Dakota : Violent crime rate: 418.4 per 100,000 (19th highest)|Poverty rate: 13.3% (24th highest)", "Tennessee : Violent crime rate: 632.9 per 100,000 (4th highest)|Poverty rate: 15.8% (11th highest)", "Texas : Violent crime rate: 434.4 per 100,000 (17th highest) | Poverty rate: 15.6% (12th highest)", "Utah : Violent crime rate: 242.8 per 100,000 (10th lowest) | Poverty rate: 10.2% (7th lowest)", "Vermont : Violent crime rate: 158.3 per 100,000 (2nd lowest)|Poverty rate: 11.9% (19th lowest) ", "Virginia : Violent crime rate: 217.6 per 100,000 (4th lowest)|Poverty rate: 11.0% (12th lowest)", "Washington : Violent crime rate: 302.2 per 100,000 (19th lowest)|Poverty rate: 11.3% (14th lowest)", "West Virginia :Violent crime rate: 358.1 per 100,000 (24th lowest)| Poverty rate: 17.9% (5th highest) ", "Wisconsin : Violent crime rate: 305.9 per 100,000 (20th lowest)|Poverty rate: 11.8% (18th lowest) ", "Wyoming : Violent crime rate: 244.2 per 100,000 (11th lowest)|Poverty rate: 11.3% (14th lowest)"];
+   
+	 var dynamicAnnotationsIndex = ["Hawaii", "Alabama","Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Idaho", "Illinois", "Indiana","Iowa","Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Missouri","Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+   
+ 	 var dynamicAnnotationsCoordinates = ["900.01587301587307|494.4|-100.46825396825403|270", "900|67|10.46825396825403|270", "900|14.399999999999977|10.46825396825403|270", "900|237.60000000000002|10.46825396825403|270", "900|136.8|10.46825396825403|270", "900|427.2|10.46825396825403|270", "900|259.20000000000005|10.46825396825403|270", "900|472.8|10.46825396825403|270", "900|362.4|10.46825396825403|270", "900|295.2|10.46825396825403|270", "900|220.8|10.46825396825403|270",  "900|259.20000000000005|10.46825396825403|270", "900|340.79999999999995|10.46825396825403|270",  "900|261.6|10.46825396825403|270", "900|381.6|10.46825396825403|270", "900|271.20000000000005|10.46825396825403|270", "900|242.40000000000003|10.46825396825403|270", "900|69.60000000000002|10.46825396825403|270", "900|324|10.46825396825403|270", "900|324|10.46825396825403|270", "900|518.4|10.46825396825403|270", "900|309.6|10.46825396825403|270", "900|309.6|10.46825396825403|270", "900|105.59999999999997|10.46825396825403|270", "900|144|10.46825396825403|270", "900|350.4|10.46825396825403|270", "900|232.8|10.46825396825403|270", "900|343.28|10.46825396825403|270", "900|501.6|10.46825396825403|270", "900|64.79999999999995|10.46825396825403|270" , "900|506.4|10.46825396825403|270", "900|285.59999999999997|10.46825396825403|270", "900|302.4|10.46825396825403|270", "900|280.79999999999995|10.46825396825403|270", "900|297.6|10.46825396825403|270", "900|297.6|10.46825396825403|270",  "900|319.20000000000005|10.46825396825403|270",  "900|489.6|10.46825396825403|270",  "900|122.40000000000003|10.46825396825403|270", "900|285.59999999999997|10.46825396825403|270", "900|158.40000000000003|10.46825396825403|270", "900|295.2|10.46825396825403|270",  "900|292.8|10.46825396825403|270",  "900|376.79999999999995|10.46825396825403|270",  "900|319.20000000000005|10.46825396825403|270",  "900|343.2|10.46825396825403|270",  "900|201.59999999999997|10.46825396825403|270",  "900|360|10.46825396825403|270",  "900|64.79999999999995|10.46825396825403|270"];  
+
+
+   function getAnnotationIndex(state){
+   	    
+        for(var i=0; i < dynamicAnnotationsIndex.length; i++){
+        	   if(state == dynamicAnnotationsIndex[i]){
+             			return i;
+             }
+        }
+   }
+   
+   function getTitleLabel(state){
+   
+   		var index = getAnnotationIndex(state);   
+      var splitArray = String(dynamicAnnotations[index]).split("|");
+
+   		return splitArray;
+   
+   }
+   
+   function getCoordinates(state){
+   
+   		var index = getAnnotationIndex(state);
+      var splitArray = String(dynamicAnnotationsCoordinates[index]).split("|");
+   
+   		return splitArray;
+   
+   }
+
+   const annotation1 = [{
+
+            note: {
+              title: getTitleLabel(state)[0],
+              label: getTitleLabel(state)[1],
+              wrap: 200,
+              align: 'right',
+            },
+            connector: {
+              end: 'arrow'
+            },
+            x: parseInt(getCoordinates(state)[0]),
+            y:  parseInt(getCoordinates(state)[1]),
+            dy: parseInt( getCoordinates(state)[2]),
+            dx:  parseInt(getCoordinates(state)[3]),
+            color: "black"
+          },
+          
+          ];
+
+          const makeAnnotations1 = d3.annotation()
+            .type(d3.annotationCalloutCircle)
+            .annotations(annotation1);
+
+          graphSVG
+            .append("g")
+            .attr("class", "annotation-group")
+            .call(makeAnnotations1);
 }
   
 
