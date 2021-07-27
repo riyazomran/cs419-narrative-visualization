@@ -202,10 +202,10 @@
   </div>
   <br>
     <font size="5" color="#0066cc;"><b>
-      <div id="sliderDateRange2" style="color:#0066cc;text-align: center;">Aggregate Deaths Across Period of Time - <span id="sliderDeathCnt">100</span></div>
+      <div id="sliderDateRange2" style="color:#0066cc;text-align: center;">Aggregate Deaths Across Period of Time - <span id="sliderDeathCnt">3000</span></div>
     </b></font>
 <div class="slidecontainer" id="question2" style="white-space: nowrap;">
-    <font size="5"><b>100 Death</b></font> &nbsp;<input type="range" min="100" max="16000" value="100" class="slider" id="range2" onclick="clearAndRenderByDeathCnt(this.value, 'deathCntSlider');document.getElementById('sliderDeathCnt').innerHTML = this.value;">&nbsp;<font size="5"><b>16,000 Deaths</b></font>
+    <font size="5"><b>100 Death</b></font> &nbsp;<input type="range" min="100" max="16000" value="3000" class="slider" id="range2" onclick="clearAndRenderByDeathCnt(this.value, 'deathCntSlider');document.getElementById('sliderDeathCnt').innerHTML = this.value;">&nbsp;<font size="5"><b>16,000 Deaths</b></font>
 </div>
 
 
