@@ -113,7 +113,7 @@ function updateAnswer(questionNumber){
 </div>
 <div><br></div>
 <div>
-    <button id="chooseYourPath" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/chooseyourpath.md';">Explore More: Choose Your Path</button>
+    <button id="chooseYourPath" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/chooseyourpath';">Explore More: Choose Your Path</button>
 
 </div>
 <div><hr></div>
