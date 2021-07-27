@@ -178,9 +178,8 @@
   </table>
 
   <div>
-    <button id="scene1" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/index';">1</button>
-    <button id="scene2" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/scene2';">2</button>
-    <button id="scene3" class="button2" style="background-color:grey;color:white;" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/sc3';">3</button>
+    <button id="scene1" class="button2"  onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/index';">Start Over</button>
+    <button id="scene2" class="button2"  onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/chooseyourpath';">Expore More: Choose Your Path</button>
   </div>
 
   <div>
@@ -188,8 +187,6 @@
   </div>
   <div>
     &nbsp;&nbsp;&nbsp;&nbsp;<button id="quickLink1" class="button2" onclick="clearFlags();">Clear Flags</button>
-<!--    <button id="quickLink2" class="button2" onclick="flagStatesWithHighGunViolence();">Flag States with Consistent High Death Counts</button>
-    <button id="quickLink3" class="button2" onclick="flagWithLowestGunViolence();">Flag State with Lowest Death Counts</button> <-->
     <button id="quickLink4" class="button2" onclick="clearAndRender(parseInt(2019)- ((parseInt(2019) - document.getElementById('range1').value) + parseInt(2014)),'bubblesort'); document.getElementById('sortState').value=0;">Sort in Ascending Order (View Year-over-Year Variance in Rankings)</button>
   </div>
   <br>
