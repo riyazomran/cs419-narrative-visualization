@@ -134,7 +134,7 @@ margin:7px auto;
 </style>
 
 
-<table>
+<table >
 <tr>
 <td><img src="images.png"></td>
 <td style="vertical-align: middle;" class="banner banner0">
@@ -144,17 +144,18 @@ margin:7px auto;
 </table>
 <br><br>
 
-<table width="1200" height="900" border="0">
+<table width="1600" height="900" border="1" style="text-align:center;">
 <tr>
-<td align="middle" colspan="3">
+<td align="middle" colspan="4">
  <font size="10" color="black">Choose Your Path for Exploring</font>
-<td>
+ </td>
 </tr>
 <tr>
 <td style="vertical-align:top;text-align:center;">
- <button id="btn1" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/scene2';">Gun Violence State Death Rate By Year Trend Analysis</button>
-<td>
-<td  style="vertical-align:top;;text-align:center;"> <button id="btn2" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/sc3';">Death Count by State Across Different Periods of Time</button></td>
+ <button id="btn1" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/scene2';">Gun Violence State Death Rate By Year Trend Analysis</button>\
+ </td>
+<td style="vertical-align:top;;text-align:center;"> <button id="btn2" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/sc3';">Death Count by State Across Different Periods of Time</button>
+</td>
 </tr>
 </table>
 
