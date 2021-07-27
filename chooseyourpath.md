@@ -102,7 +102,7 @@ margin:7px auto;
   background-color: white;
   color: black;
   border: 2px solid #008CBA;
-  font-size: 25px;
+  font-size: 40px;
 }
 
 .button2:hover {
@@ -144,7 +144,7 @@ margin:7px auto;
 </table>
 <br><br>
 
-<table width="1600" height="900" border="1" style="text-align:center;">
+<table width="1600" height="900" border="0" style="text-align:center;">
 <tr>
 <td align="middle" colspan="4">
  <font size="10" color="black">Choose Your Path for Exploring</font>
@@ -152,7 +152,7 @@ margin:7px auto;
 </tr>
 <tr>
 <td style="vertical-align:top;text-align:center;">
- <button id="btn1" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/scene2';">Gun Violence State Death Rate By Year Trend Analysis</button>\
+ <button id="btn1" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/scene2';">Gun Violence State Death Rate By Year Trend Analysis</button>
  </td>
 <td style="vertical-align:top;;text-align:center;"> <button id="btn2" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/sc3';">Death Count by State Across Different Periods of Time</button>
 </td>
