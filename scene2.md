@@ -152,9 +152,8 @@ margin:7px auto;
 </table>
 
 <div>
-    <button id="scene1" class="button2"  onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/index';">1</button>
-    <button id="scene2" class="button2" style="background-color:grey;color:white;" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/scene2';">2</button>
-    <button id="scene3" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/sc3';">3</button>
+    <button id="scene1" class="button2"  onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/index';">Start Over</button>
+    <button id="scene2" class="button2"  onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/chooseyourpath';">Expore More: Choose Your Path</button>
     <button id="quickLink1" class="button2" onclick="clearGraph();">Reset Visualization</button>
 </div>
 <div><hr></div>
