@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://assets.ctl.io/chi/2.1.0/chi.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
   .axis path {
     stroke: black;
@@ -176,7 +176,14 @@
       </td>
     </tr>
   </table>
+<div>
 
+<div class="w3-light-grey">
+  <div class="w3-blue" style="height:24px;width:75%"></div>
+</div>
+<div>Challenge Question &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose Your Path &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Explore Gun Violence by State</div>
+
+</div><br>
   <div>
     <button id="scene1" class="button2"  onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/index';">Start Over</button>
     <button id="scene2" class="button2"  onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/chooseyourpath';">Expore More: Choose Your Path</button>
