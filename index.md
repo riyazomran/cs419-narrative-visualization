@@ -116,8 +116,8 @@ function updateAnswer(questionNumber){
 <div><br></div>
 <div>
 
-<div class="w3-light-grey" style="width:200px;">
-  <div class="w3-blue" style="height:24px;width:10%"></div>
+<div class="w3-light-grey" style="width:600px;">
+  <div class="w3-blue" style="height:24px;width:25%"></div>
 </div>
 <div>Challenge Question &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose Your Path &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Explore Gun Violence by State</div>
 
