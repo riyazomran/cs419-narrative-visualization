@@ -1,3 +1,5 @@
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 .body {
   font-family: 'Courier New', monospace;
@@ -113,9 +115,14 @@ function updateAnswer(questionNumber){
 </div>
 <div><br></div>
 <div>
-    <button id="chooseYourPath" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/chooseyourpath';">Explore More: Choose Your Path</button>
 
+<div class="w3-light-grey">
+  <div class="w3-blue" style="height:24px;width:25%"></div>
 </div>
+<div>Challenge Question &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose Your Path &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Explore Gun Violence by State</div>
+
+</div><br>
+    <button id="chooseYourPath" class="button2" onclick="location.href = 'https://riyazomran.github.io/cs419-narrative-visualization/chooseyourpath';">Explore More: Choose Your Path</button>
 <div><hr></div>
 
 <!-- QUESTION #1 -->
