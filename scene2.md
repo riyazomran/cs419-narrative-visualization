@@ -145,8 +145,8 @@ margin:7px auto;
 <table>
 <tr>
 <td colspan="3" style="vertical-align:top;"><br><p>
-<font size="5">Compare and contrast different states with highest level of gun violence (least restrictive gun polcies) vs. those with the lowest level of gun violence (most restrictive gun policies) between 2014 - 2019. <b>Click the color coded cubes at opposite ends of the spectrum to select your home state and compare it to other states across a 5 year period. </b></font></p>
-<p> <font size="5">Take note that the death rates shown across the year is color coded with the thresholds mapped to years of highest level of gun violence vs. lowest levels of gun violence. <br><i>For example compare <b><font color="blue">Hawaii</font></b> to <font color="red">Wyoming</font> year-over-year to see how state gun policies impact death rates.</i></font>.</p>
+<font size="4">Compare and contrast different states with highest level of gun violence (least restrictive gun polcies) vs. those with the lowest level of gun violence (most restrictive gun policies) between 2014 - 2019. <b>Click the color coded cubes at opposite ends of the spectrum to select your home state and compare it to other states across a 5 year period. </b></font></p>
+<p> <font size="4">Take note that the death rates shown across the year is color coded with the thresholds mapped to years of highest level of gun violence vs. lowest levels of gun violence. <br><i>For example compare <b><font color="blue">Hawaii</font></b> to <font color="red">Wyoming</font> year-over-year to see how state gun policies impact death rates.</i></font>.</p>
 </td>
 <td><img src="https://github.com/riyazomran/cs419-narrative-visualization/raw/gh-pages/legend.png" width="626" height="240"></td>
 </tr>
@@ -155,7 +155,7 @@ margin:7px auto;
 <div>
 
 <div class="w3-light-grey" style="width:600px;">
-  <div class="w3-blue" style="height:24px;width:75%"></div>
+  <div class="w3-blue" style="height:24px;width:100%"></div>
 </div>
 <div>Challenge Question &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose Your Path &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Explore Gun Violence by State</div>
 
