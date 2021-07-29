@@ -171,7 +171,7 @@
           <font size="4">In the previous visualization we focused on comparing death rate trends between states across 5 year period. In this slide we will start look at raw number of deaths by state and how gun violence actually impacts each life from state-to-state. We will also see if there are variances or change in gun violence in various year ranges between 2014-2019.  In the visualization below you will find quick link buttons that allow you to: <b><br>&nbsp;&nbsp;&nbsp;&nbsp;(1) View the data sorted year-over-year: <br>&nbsp;&nbsp;&nbsp; (2) View additional details of states with consistently high death counts year-over-year <br>&nbsp;&nbsp;&nbsp;&nbsp;(3) States that have historically show the lowest death counts year-over-year.</b></font><br>   
         </p>
         <p>
-         <font size="5">Last use the slider below the visualization to view changes in gun violence across different periods of time OR limit the number of deaths to a specific threshold to see the states to see the states that fall under that threshold.</font>
+         <font size="4">Lastly use the slider below the visualization to view changes in gun violence across different periods of time OR limit the number of deaths to a specific threshold to see the states to see the states that fall under that threshold.</font>
         </p>
       </td>
     </tr>
