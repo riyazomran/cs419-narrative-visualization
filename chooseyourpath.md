@@ -147,7 +147,7 @@ margin:7px auto;
 <div>
 
 <div class="w3-light-grey" style="width:700px;">
-  <div class="w3-blue" style="height:24px;width:100%"></div>
+  <div class="w3-blue" style="height:24px;width:50%"></div>
 </div>
 <div>Challenge Question &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose Your Path &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Explore Gun Violence by State</div>
 
