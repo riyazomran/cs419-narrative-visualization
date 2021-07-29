@@ -142,7 +142,17 @@ margin:7px auto;
 </td>
 </tr>
 </table>
-<br><br>
+<br>
+
+<div>
+
+<div class="w3-light-grey" style="width:700px;">
+  <div class="w3-blue" style="height:24px;width:100%"></div>
+</div>
+<div>Challenge Question &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose Your Path &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Explore Gun Violence by State</div>
+
+</div><br>
+<div><hr></div>
 
 <table width="1600" height="900" border="0" style="text-align:center;">
 <tr>
